@@ -1,0 +1,31 @@
+*, html {
+    margin:0;
+    padding:0;  
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h1{
+    font-family: 'Special Elite', cursive;
+    align-self: center;
+    font-size: 60px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 12px;
+}
+
+.banner {
+    max-width: 70%;
+   align-items: right; 
+}
