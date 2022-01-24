@@ -10,7 +10,19 @@ fetchDrinks()
 function fetchDrinks() {
   return fetch(url)
     .then((response) => response.json())
-    .then((drinkArray) => console.log(drinkArray))
+    .then((drinkArray) => displayDrinks(drinkArray))
+}
+// make a card for each coffee and append to menu?
+function displayDrinks(drinkArray) {
+  drinkArray.forEach((drink) => {
+    const drinkCard = document.createElement("div")
+    drinkCard.className = "drinkCard"
+    drinkCard.innerHTML = `
+        <h2>${drink.name}</h2>
+        <img src =${drink.image} > 
+        `
+    menuContainer.append(drinkCard)
+  })
 }
 
 //Fetch Coffees
