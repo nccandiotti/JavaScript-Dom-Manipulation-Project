@@ -14,19 +14,24 @@ function fetchDrinks() {
 }
 // make a card for each coffee and append to menu?
 function displayDrinks(drinkArray) {
-  drinkArray.forEach((drink) => {
+  drinkArray.forEach((drinkObj) => {
     const drinkCard = document.createElement("div")
     drinkCard.className = "drinkCard"
     drinkCard.innerHTML = `
-        <h2>${drink.name}</h2>
-        <img src =${drink.image} > 
+        <h2>${drinkObj.drink}</h2>
+        <img src =${drinkObj.image} > 
         `
+    drinkCard.addEventListener("click", cardHandler)
     menuContainer.append(drinkCard)
   })
 }
 
-//Fetch Coffees
-//render Images into menu container with names
+function cardHandler(e) {
+  console.log(e.target)
+}
+
+//Fetch Coffees✅
+//render Images into menu container with names✅
 //add click event to coffee cards that:
 //render image, name, form to drink display
 //a form with editable size, flavor
