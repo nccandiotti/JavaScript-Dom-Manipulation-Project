@@ -1,5 +1,17 @@
+// ----------- Grab Variables -------------
+const menuContainer = document.querySelector("#menuContainer")
+const drinkDisplay = document.querySelector("#drinkDisplay")
+const cart = document.querySelector("#cart")
+const customDrink = document.querySelector("#customDrink")
+const url = "http://localhost:3000/coffee"
 
-
+// --------------- fetch request -----------
+fetchDrinks()
+function fetchDrinks() {
+  return fetch(url)
+    .then((response) => response.json())
+    .then((drinkArray) => console.log(drinkArray))
+}
 
 //Fetch Coffees
 //render Images into menu container with names
@@ -10,14 +22,11 @@
 //price
 //an add to cart button
 
-
-
-//add to cart button will: 
+//add to cart button will:
 //add list item to cart container with:
 //price that will update on bottom bar as drinks are added
 //name of drink
 //delete button
-
 
 //create a drink form with:
 //default values for all inputs
