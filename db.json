@@ -1,0 +1,45 @@
+{
+    "books":
+    [
+    {
+      "id": 1,  
+      "drink" : "Latte",
+      "price" : "4.50",
+      "size" : "medium",
+      "flavor": "none",
+      "image": "https://www.nespresso.com/ncp/res/uploads/recipes/nespresso-recipes-Latte-Art-Tulip.jpg"
+    },
+    {
+      "id": 2,  
+      "drink" : "Macchiato",
+      "price" : "3.50",
+      "size" : "medium",
+      "flavor": "none",
+      "image": "https://i2.wp.com/www.teacoffeecup.com/wp-content/uploads/2020/08/classic-macchiato-espresso.jpg?fit=550%2C367&ssl=1"
+    },
+    {
+      "id": 3,  
+      "drink" : "Cappuccino",
+      "price" : "3.00",
+      "size" : "medium",
+      "flavor": "none",
+      "image": "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/cappuccino-2029-e80b7c6d318c7862df2c4c8623a11f99@1x.jpg"
+    },
+    {
+      "id": 4,  
+      "drink" : "Black Tea",
+      "price" : "2.75",
+      "size" : "medium",
+      "flavor": "none",
+      "image": "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324771/close-up-of-a-cup-of-tea.jpg"
+    },
+    {
+      "id": 1,  
+      "drink" : "Chai Latte",
+      "price" : "3.50",
+      "size" : "medium",
+      "flavor": "none",
+      "image": "https://wholefully.com/wp-content/uploads/2019/11/homemade-chai-tea-gift-set-mug-735x1103.jpg"
+    }
+]
+}
