@@ -21,14 +21,26 @@ function displayDrinks(drinkArray) {
         <h2>${drinkObj.drink}</h2>
         <img src =${drinkObj.image} > 
         `
-    drinkCard.addEventListener("click", cardHandler)
+        drinkCard.addEventListener('click', ()=>{
+        const modalCard=document.createElement('div')
+        modalCard.className="modalCard"
+        // modalCard.
+        modalCard.style.display="block"
+        console.log(drinkObj.drink)
+        document.querySelector('header').append(modalCard)
+
+    })
     menuContainer.append(drinkCard)
   })
 }
 
-function cardHandler(e) {
-  console.log(e.target)
-}
+// function render 
+
+
+//-----------event listeners-------------
+
+
+
 
 //Fetch Coffees✅
 //render Images into menu container with names✅
