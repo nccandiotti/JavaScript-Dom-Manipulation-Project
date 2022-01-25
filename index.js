@@ -61,8 +61,13 @@ function displayDrinks(drinkArray) {
 
 //Fetch Coffees✅
 //render Images into menu container with names✅
-//add click event to coffee cards that:
-//render image, name, form to drink display
+//add click event to coffee cards that:✅
+//render image, name, ✅
+//exit button ✅
+
+//----TOMORROW----//
+
+//render form to drink display
 //a form with editable size, flavor
 //also default values for coffee selected, size, flavor
 //price
@@ -73,6 +78,8 @@ function displayDrinks(drinkArray) {
 //price that will update on bottom bar as drinks are added
 //name of drink
 //delete button
+
+//--------//
 
 //create a drink form with:
 //default values for all inputs
