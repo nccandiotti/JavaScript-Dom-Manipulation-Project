@@ -47,7 +47,13 @@ function displayDrinks(drinkArray) {
 
             <label>Flavors</label>
             <input placeholder = "What's your flavor" ></input>
+            <input id = "submit" type="submit" value="Add to cart" />
             `
+
+      modalForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        console.log("hi")
+      })
 
       coffeeName.textContent = drinkObj.drink
       coffeePrice.textContent = drinkObj.price
@@ -70,7 +76,7 @@ function displayDrinks(drinkArray) {
 
 //-----------event listeners-------------
 
-//Fetch Coffees✅✅
+//Fetch Coffees✅
 //render Images into menu container with names✅
 //add click event to coffee cards that:✅
 //render image, name, ✅
@@ -78,10 +84,10 @@ function displayDrinks(drinkArray) {
 
 //----TOMORROW----//
 
-//render form to drink display
-//a form with editable size, flavor
-//also default values for coffee selected, size, flavor
-//price
+//render form to drink display ✅
+//a form with editable size, flavor ✅
+//also default values for coffee selected, size, flavor ✅
+//price✅
 //an add to cart button
 
 //add to cart button will:
