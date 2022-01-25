@@ -21,6 +21,7 @@ function displayDrinks(drinkArray) {
         <h2>${drinkObj.drink}</h2>
         <img src =${drinkObj.image} > 
         `
+
     drinkCard.addEventListener("click", () => {
       const modalCard = document.createElement("div")
       modalCard.className = "modalCard"
@@ -51,23 +52,24 @@ function displayDrinks(drinkArray) {
 
       modalForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        const deleteButton=document.createElement('button')
-        const cartItem=document.createElement('span')
+        const deleteButton = document.createElement("button")
+        const cartItem = document.createElement("span")
 
-        deleteButton.innerHTML=`<ion-icon name="close-outline"></ion-icon>`
+        deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+        deleteButton.addEventListener("click", (e) => {
+          cartItem.remove()
+        })
 
-        let coffeeChoiceObj={
-            size: e.target.size.value,
-            flavor: e.target.flavor.value,
-            }
+        let coffeeChoiceObj = {
+          size: e.target.size.value,
+          flavor: e.target.flavor.value,
+        }
 
-        
-        cartItem.textContent=`1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${drinkObj.drink}`  
+        cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${drinkObj.drink}`
         cartItem.append(deleteButton)
         cart.append(cartItem)
       })
 
-  
       coffeeName.textContent = drinkObj.drink
       coffeePrice.textContent = drinkObj.price
       coffeeImage.style.maxHeight = "200px"
@@ -107,7 +109,7 @@ function displayDrinks(drinkArray) {
 //add list item to cart container with:✅
 //price that will update on bottom bar as drinks are added
 //name of drink✅
-//delete button
+//delete button ✅
 
 //--------//
 
@@ -125,7 +127,6 @@ function displayDrinks(drinkArray) {
 //change CSS featues based on selected flavor
 //reflect price when flavors and size are changed
 //
-
 
 //CLEANUP
 //line break in cart
