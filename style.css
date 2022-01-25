@@ -83,7 +83,8 @@ h1 {
     z-index: 5;
   }
 
-  i {
-      width: 24px;
-      height: 24px;
+  button {
+      text-align: center;
+      width: 18px;
+      height: 18px;
   }

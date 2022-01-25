@@ -51,17 +51,23 @@ function displayDrinks(drinkArray) {
 
       modalForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        const cartItem=document.createElement('p')
+        const deleteButton=document.createElement('button')
+        const cartItem=document.createElement('span')
+
+        deleteButton.innerHTML=`<ion-icon name="close-outline"></ion-icon>`
+
         let coffeeChoiceObj={
-        size: e.target.size.value,
-        flavor: e.target.flavor.value,
-        }
-        console.log(coffeeChoiceObj)
-        cartItem.append(coffeeChoiceObj.size)
-        cartItem.append(coffeeChoiceObj.flavor)
+            size: e.target.size.value,
+            flavor: e.target.flavor.value,
+            }
+
+        
+        cartItem.textContent=`1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${drinkObj.drink}`  
+        cartItem.append(deleteButton)
         cart.append(cartItem)
       })
 
+  
       coffeeName.textContent = drinkObj.drink
       coffeePrice.textContent = drinkObj.price
       coffeeImage.style.maxHeight = "200px"
@@ -97,10 +103,10 @@ function displayDrinks(drinkArray) {
 //price✅
 //an add to cart button✅
 
-//add to cart button will:
-//add list item to cart container with:
+//add to cart button will:✅
+//add list item to cart container with:✅
 //price that will update on bottom bar as drinks are added
-//name of drink
+//name of drink✅
 //delete button
 
 //--------//
@@ -119,3 +125,9 @@ function displayDrinks(drinkArray) {
 //change CSS featues based on selected flavor
 //reflect price when flavors and size are changed
 //
+
+
+//CLEANUP
+//line break in cart
+//function breakup
+//"your total is" after cartItem
