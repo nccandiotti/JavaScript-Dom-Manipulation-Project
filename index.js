@@ -54,6 +54,7 @@ function displayDrinks(drinkArray) {
         e.preventDefault()
         const deleteButton = document.createElement("button")
         const cartItem = document.createElement("span")
+        modalCard.style.display = "none"
 
         deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
         deleteButton.addEventListener("click", (e) => {
@@ -86,6 +87,19 @@ function displayDrinks(drinkArray) {
     menuContainer.append(drinkCard)
   })
 }
+// ----------------- custom drink form ------------
+const customDrinkForm = document.querySelector("#customDrinkForm")
+customDrinkForm.addEventListener("submit", (e) => {
+  e.preventDefault()
+  const deleteButton = document.createElement("button")
+  const cartItem = document.createElement("span")
+  modalCard.style.display = "none"
+
+  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+  deleteButton.addEventListener("click", (e) => {
+    cartItem.remove()
+  })
+})
 
 // function render
 
@@ -116,7 +130,7 @@ function displayDrinks(drinkArray) {
 //create a drink form with:
 //default values for all inputs
 //base drink
-//flavor dropdown
+//flavor input
 //size dropdown
 //name input-will replace drink name when posted to db.json
 
@@ -126,7 +140,7 @@ function displayDrinks(drinkArray) {
 //add star rating?
 //change CSS featues based on selected flavor
 //reflect price when flavors and size are changed
-//
+// key functions for closing modal and/or entering form (enter keyboard to submit form)
 
 //CLEANUP
 //line break in cart
