@@ -42,7 +42,8 @@ h1 {
 }
 
 .drinkCard {
-  padding: 20px 20px;
+  margin: 20px 20px;
+  text-align: center;
 }
 
 #bigDiv {
@@ -52,13 +53,24 @@ h1 {
   justify-content: space-evenly;
   align-items: center;
 }
+
+#cart {
+    max-width: 30%;
+    border: 5px solid rgb(103,71,54);
+    padding: 10px;
+}
+
 #menuContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  max-width: 70%
 }
+
+
+
 .modalCard {
   display: none;
   position: absolute;
@@ -89,3 +101,4 @@ button {
   width: 18px;
   height: 18px;
 }
+

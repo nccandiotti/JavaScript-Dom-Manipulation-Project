@@ -18,12 +18,11 @@ function fetchDrinks() {
 }
 
 function displayDrinks(drinkObj){
-    // console.log(drinkObj)
     const drinkCard = document.createElement("div")
     drinkCard.className = "drinkCard"
     drinkCard.innerHTML = `
         <h2>${drinkObj.drink}</h2>
-        <img src =${drinkObj.image} > 
+        <img src =${drinkObj.image}> 
         `
     drinkCard.addEventListener("click", ()=>createModalCard(drinkObj))
     menuContainer.append(drinkCard)
@@ -33,7 +32,6 @@ function createModalCard(drinkObj){
     const modalCard = document.createElement("div")
       modalCard.className = "modalCard"
       modalCard.style.display = "block"
-
       const coffeeName = document.createElement("p")
       const coffeePrice = document.createElement("p")
       const coffeeImage = document.createElement("img")
@@ -59,7 +57,9 @@ function createModalCard(drinkObj){
     modalCard.append(coffeePrice)
     menuContainer.append(modalCard)
     createModalForm(modalCard)
-
+    // if(modal belongs to a new coffee){
+    //     set size option value to size selected
+    // }
 
 }
 
@@ -106,14 +106,91 @@ function addToCart(e){
 }
 
 
-customDrinkForm.addEventListener("submit", (e) => {
-  e.preventDefault()
-  const deleteButton = document.createElement("button")
-  const cartItem = document.createElement("span")
-  modalCard.style.display = "none"
+customDrinkForm.addEventListener("submit", addToMenu)
 
-  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
-  deleteButton.addEventListener("click", (e) => {
-    cartItem.remove()
-  })
-})
+function addToMenu(e){
+  e.preventDefault()
+  
+  let newDrinkObj = {
+    drink: e.target.customDrink.value,
+    image: "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg"
+  }
+//   modalForm.style.display="none"
+console.log(e.target)
+  displayDrinks(newDrinkObj) 
+
+
+
+
+
+
+
+
+
+
+
+// const deleteButton = document.createElement("button")
+//   const cartItem = document.createElement("span")
+//   const customDrinkImage=document.createElement('img')
+//   customDrinkImage.src=''
+//   drinkCard.innerHTML = `
+//         <h2>${drinkObj.drink}</h2>
+//         <img src =${drinkObj.image}> 
+//         `
+//   const customDrinkObj={
+//       name: e.target.customDrink.value,
+//       image: customDrinkImage,
+//   }
+//   console.log(customDrinkObj)
+//   displayDrinks(customDrinkObj)
+//   drinkCard.append(customDrinkObj)
+//   menuContainer.append(drinkCard)
+  
+}
+
+// function render
+
+//-----------event listeners-------------
+
+//Fetch Coffees✅
+//render Images into menu container with names✅
+//add click event to coffee cards that:✅
+//render image, name, ✅
+//exit button ✅
+
+//----TOMORROW----//
+
+//render form to drink display ✅
+//a form with editable size, flavor ✅
+//also default values for coffee selected, size, flavor ✅
+//price✅
+//an add to cart button✅
+
+//add to cart button will:✅
+//add list item to cart container with:✅
+//price that will update on bottom bar as drinks are added
+//name of drink✅
+//delete button ✅
+
+//--------//
+
+//create a drink form with:
+//default values for all inputs
+//base drink
+//flavor input
+//size dropdown
+//name input-will replace drink name when posted to db.json
+
+//STRETCH
+//populate nav bar with filter option for coffee/tea
+//add comment section (reviews for shop)
+//add star rating?
+//change CSS featues based on selected flavor
+//reflect price when flavors and size are changed
+// key functions for closing modal and/or entering form (enter keyboard to submit form)
+//add amount dropdown to order form
+
+//CLEANUP
+//line break in cart
+//function breakup
+//"your total is" after cartItem
