@@ -36,7 +36,6 @@ function displayDrinks(drinkArray) {
       })
 
       const modalForm = document.createElement("form")
-      console.log(modalForm)
       modalForm.innerHTML = `
             <label>Size</label>
             <select id="sizeSelector" name="size">
@@ -46,13 +45,21 @@ function displayDrinks(drinkArray) {
             </select> <br>
 
             <label>Flavors</label>
-            <input placeholder = "What's your flavor" ></input>
+            <input name="flavor" placeholder = "What's your flavor" ></input>
             <input id = "submit" type="submit" value="Add to cart" />
             `
 
       modalForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        console.log("hi")
+        const cartItem=document.createElement('p')
+        let coffeeChoiceObj={
+        size: e.target.size.value,
+        flavor: e.target.flavor.value,
+        }
+        console.log(coffeeChoiceObj)
+        cartItem.append(coffeeChoiceObj.size)
+        cartItem.append(coffeeChoiceObj.flavor)
+        cart.append(cartItem)
       })
 
       coffeeName.textContent = drinkObj.drink
@@ -88,7 +95,7 @@ function displayDrinks(drinkArray) {
 //a form with editable size, flavor ✅
 //also default values for coffee selected, size, flavor ✅
 //price✅
-//an add to cart button
+//an add to cart button✅
 
 //add to cart button will:
 //add list item to cart container with:
