@@ -8,7 +8,7 @@ const url = "http://localhost:3000/coffee"
 // --------------- fetch request -----------
 fetchDrinks()
 function fetchDrinks() {
-    return fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((drinkArray) => displayDrinks(drinkArray))
 }
@@ -21,21 +21,21 @@ function displayDrinks(drinkArray) {
         <h2>${drinkObj.drink}</h2>
         <img src =${drinkObj.image} > 
         `
-        drinkCard.addEventListener('click', ()=>{
-            const modalCard=document.createElement('div')
-            modalCard.className="modalCard"
+    drinkCard.addEventListener("click", () => {
+      const modalCard = document.createElement("div")
+      modalCard.className = "modalCard"
 
-            const coffeeName=document.createElement('p')
-            const coffeePrice=document.createElement('p')
-            const coffeeImage=document.createElement('img')
-            const exitButton=document.createElement('button')
-            exitButton.className="close-modal"
-            exitButton.textContent="x"
-            exitButton.addEventListener('click', ()=>{
-                modalCard.style.display="none"
-            })
+      const coffeeName = document.createElement("p")
+      const coffeePrice = document.createElement("p")
+      const coffeeImage = document.createElement("img")
+      const exitButton = document.createElement("button")
+      exitButton.className = "close-modal"
+      exitButton.textContent = "x"
+      exitButton.addEventListener("click", () => {
+        modalCard.style.display = "none"
+      })
 
-            const modalForm = document.createElement("form")
+      const modalForm = document.createElement("form")
       console.log(modalForm)
       modalForm.innerHTML = `
             <label>Size</label>
@@ -49,32 +49,28 @@ function displayDrinks(drinkArray) {
             <input placeholder = "What's your flavor" ></input>
             `
 
-            coffeeName.textContent=drinkObj.drink
-            coffeePrice.textContent=drinkObj.price
-            coffeeImage.style.maxHeight="200px";
-            coffeeImage.src=drinkObj.image
-            modalCard.style.display="block"
-            
-            modalCard.append(exitButton)
-            modalCard.append(coffeeName)
-            modalCard.append(coffeeImage)
-            modalCard.append(coffeePrice)
-            modalCard.append(modalForm)
-            menuContainer.append(modalCard)
+      coffeeName.textContent = drinkObj.drink
+      coffeePrice.textContent = drinkObj.price
+      coffeeImage.style.maxHeight = "200px"
+      coffeeImage.src = drinkObj.image
+      modalCard.style.display = "block"
+
+      modalCard.append(exitButton)
+      modalCard.append(coffeeName)
+      modalCard.append(coffeeImage)
+      modalCard.append(coffeePrice)
+      modalCard.append(modalForm)
+      menuContainer.append(modalCard)
     })
     menuContainer.append(drinkCard)
   })
 }
 
-// function render 
-
+// function render
 
 //-----------event listeners-------------
 
-
-
-
-//Fetch Coffees✅
+//Fetch Coffees✅✅
 //render Images into menu container with names✅
 //add click event to coffee cards that:✅
 //render image, name, ✅
