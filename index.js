@@ -141,6 +141,7 @@ customDrinkForm.addEventListener("submit", (e) => {
 //change CSS featues based on selected flavor
 //reflect price when flavors and size are changed
 // key functions for closing modal and/or entering form (enter keyboard to submit form)
+//add amount dropdown to order form
 
 //CLEANUP
 //line break in cart
