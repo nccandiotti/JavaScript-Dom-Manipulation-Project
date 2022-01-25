@@ -8,7 +8,7 @@ const url = "http://localhost:3000/coffee"
 // --------------- fetch request -----------
 fetchDrinks()
 function fetchDrinks() {
-  return fetch(url)
+    return fetch(url)
     .then((response) => response.json())
     .then((drinkArray) => displayDrinks(drinkArray))
 }
@@ -22,13 +22,30 @@ function displayDrinks(drinkArray) {
         <img src =${drinkObj.image} > 
         `
         drinkCard.addEventListener('click', ()=>{
-        const modalCard=document.createElement('div')
-        modalCard.className="modalCard"
-        // modalCard.
-        modalCard.style.display="block"
-        console.log(drinkObj.drink)
-        document.querySelector('header').append(modalCard)
+            const modalCard=document.createElement('div')
+            modalCard.className="modalCard"
 
+            const coffeeName=document.createElement('p')
+            const coffeePrice=document.createElement('p')
+            const coffeeImage=document.createElement('img')
+            const exitButton=document.createElement('button')
+            exitButton.className="close-modal"
+            exitButton.textContent="x"
+            exitButton.addEventListener('click', ()=>{
+                modalCard.style.display="none"
+            })
+
+            coffeeName.textContent=drinkObj.drink
+            coffeePrice.textContent=drinkObj.price
+            coffeeImage.style.maxHeight="200px";
+            coffeeImage.src=drinkObj.image
+            modalCard.style.display="block"
+            
+            modalCard.append(exitButton)
+            modalCard.append(coffeeName)
+            modalCard.append(coffeeImage)
+            modalCard.append(coffeePrice)
+            menuContainer.append(modalCard)
     })
     menuContainer.append(drinkCard)
   })
