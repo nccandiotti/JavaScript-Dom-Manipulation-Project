@@ -35,6 +35,20 @@ function displayDrinks(drinkArray) {
                 modalCard.style.display="none"
             })
 
+            const modalForm = document.createElement("form")
+      console.log(modalForm)
+      modalForm.innerHTML = `
+            <label>Size</label>
+            <select id="sizeSelector" name="size">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select> <br>
+
+            <label>Flavors</label>
+            <input placeholder = "What's your flavor" ></input>
+            `
+
             coffeeName.textContent=drinkObj.drink
             coffeePrice.textContent=drinkObj.price
             coffeeImage.style.maxHeight="200px";
@@ -45,6 +59,7 @@ function displayDrinks(drinkArray) {
             modalCard.append(coffeeName)
             modalCard.append(coffeeImage)
             modalCard.append(coffeePrice)
+            modalCard.append(modalForm)
             menuContainer.append(modalCard)
     })
     menuContainer.append(drinkCard)
