@@ -3,13 +3,13 @@ const menuContainer = document.querySelector("#menuContainer")
 const drinkDisplay = document.querySelector("#drinkDisplay")
 const cart = document.querySelector("#cart")
 const customDrink = document.querySelector("#customDrink")
-const url = "http://localhost:3000/coffee"
+const allCoffeesUrl = "http://localhost:3000/coffee"
 const customDrinkForm = document.querySelector("#customDrinkForm")
 
 // --------------- fetch request -----------
 fetchDrinks()
 function fetchDrinks() {
-  return fetch(url)
+  return fetch(allCoffeesUrl)
     .then((response) => response.json())
     .then(drinkArray => {
         drinkArray.forEach(drinkObj => displayDrinks(drinkObj))
@@ -52,6 +52,7 @@ function createModalCard(drinkObj){
       exitButton.addEventListener("click", () => {
         modalCard.style.display = "none"
       })
+
     modalCard.append(exitButton)
     modalCard.append(coffeeName)
     modalCard.append(coffeeImage)
