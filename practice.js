@@ -109,33 +109,35 @@ function createModalForm(modalCard) {
 }
 
 function addToCart(e) {
-    const cartItem = document.createElement("span")
-    let cartPrice=document.createElement('span')
-    cartPrice.className="cartPrice"
-    let totalPrice=document.querySelector('.totalPrice').textContent
+  const cartItem = document.createElement("span")
+  let cartPrice = document.createElement("span")
+  cartPrice.className = "cartPrice"
+  let totalPrice = document.querySelector(".totalPrice").textContent
 
-    let cartPriceNum=(parseFloat(cartPrice.textContent))
-    let totalPriceNum=(parseFloat(totalPrice))
-    
-
+  let cartPriceNum = parseFloat(cartPrice.textContent)
+  let totalPriceNum = parseFloat(totalPrice)
 
   if (e["type"] === "submit") {
     e.preventDefault()
-    
-    const {size, flavor}=e.target
+
+    const { size, flavor } = e.target
     let coffeeChoiceObj = {
       size: size.value,
       flavor: flavor.value,
-      price: e.target.parentNode.childNodes[2].textContent
+      price: e.target.parentNode.childNodes[2].textContent,
     }
-    
-    cartPrice.textContent=`${coffeeChoiceObj.price}`
-    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} 
-    ${e.target.parentNode.querySelector("p").textContent} $${cartPrice.textContent}`
+
+    cartPrice.textContent = `${coffeeChoiceObj.price}`
+    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
+      coffeeChoiceObj.flavor
+    } 
+    ${e.target.parentNode.querySelector("p").textContent} $${
+      cartPrice.textContent
+    }`
     console.log(totalPriceNum)
   } else if (e["type"] === "click") {
-    const customName=e.target.parentNode.childNodes[1].textContent
-    cartPrice.textContent=e.target.parentNode.childNodes[2].textContent
+    const customName = e.target.parentNode.childNodes[1].textContent
+    cartPrice.textContent = e.target.parentNode.childNodes[2].textContent
     cartItem.textContent = `1x  ${customName} $${cartPrice.textContent}`
   }
 
@@ -148,15 +150,10 @@ function addToCart(e) {
     cartItem.remove()
   })
 
-
-
-
   cartItem.append(deleteButton)
-  document.querySelector('.cartItems').append(cartItem)
+  document.querySelector(".cartItems").append(cartItem)
 }
 //when an item is added, grab the price and add it to the total cart price
-
-
 
 customDrinkForm.addEventListener("submit", addToMenu)
 
@@ -183,13 +180,9 @@ function addToMenu(e) {
   displayDrinks(newDrinkObj)
 }
 
-
 //-----------price calculator-------------
 
-
-function calculatePrice(Obj){
-    
-}
+function calculatePrice(Obj) {}
 //Fetch Coffees✅
 //render Images into menu container with names✅
 //add click event to coffee cards that:✅
