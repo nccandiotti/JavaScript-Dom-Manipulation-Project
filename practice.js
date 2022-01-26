@@ -1,4 +1,5 @@
 // ----------- Grab Variables -------------
+
 const menuContainer = document.querySelector("#menuContainer")
 const drinkDisplay = document.querySelector("#drinkDisplay")
 const cart = document.querySelector("#cart")
@@ -6,7 +7,9 @@ const customDrink = document.querySelector("#customDrink")
 const allCoffeesUrl = "http://localhost:3000/coffee"
 const customDrinkForm = document.querySelector("#customDrinkForm")
 
+
 // --------------- fetch request -----------
+
 fetchDrinks()
 function fetchDrinks() {
   return fetch(allCoffeesUrl)
@@ -17,6 +20,7 @@ function fetchDrinks() {
 }
 
 //---------logic------>
+
 function displayDrinks(drinkObj) {
   const drinkCard = document.createElement("div")
   drinkCard.className = "drinkCard"
@@ -28,7 +32,6 @@ function displayDrinks(drinkObj) {
     const customDrinkDeleteBtn = document.createElement("button")
     customDrinkDeleteBtn.textContent = "TRASHCAN"
     drinkCard.append(customDrinkDeleteBtn)
-    // console.log(drinkObj.id)
     customDrinkDeleteBtn.addEventListener("click", () => {
       fetch(`http://localhost:3000/coffee/${drinkObj.id}`, {
         method: "DELETE",
@@ -36,10 +39,11 @@ function displayDrinks(drinkObj) {
       drinkCard.remove()
     })
   }
-  //if new drink, add delete button
   drinkCard.addEventListener("click", () => createModalCard(drinkObj))
   menuContainer.append(drinkCard)
 }
+
+//-----------------------------------------
 
 function createModalCard(drinkObj) {
   const modalCard = document.createElement("div")
@@ -49,6 +53,9 @@ function createModalCard(drinkObj) {
   const coffeePrice = document.createElement("p")
   const coffeeImage = document.createElement("img")
   const exitButton = document.createElement("button")
+
+coffeeName.className="name"
+coffeePrice.classNAme="price"
 
   coffeeName.textContent = drinkObj.drink
   coffeePrice.textContent = drinkObj.price
@@ -61,24 +68,25 @@ function createModalCard(drinkObj) {
     modalCard.style.display = "none"
   })
 
+  if (!drinkObj.id || drinkObj.id > 5) {
+      modalCard.id="customModalCard"}
+
   modalCard.append(exitButton)
   modalCard.append(coffeeName)
   modalCard.append(coffeeImage)
   modalCard.append(coffeePrice)
   menuContainer.append(modalCard)
   createModalForm(modalCard)
-  // if(modal belongs to a new coffee){
-  //     set size option value to size selected
-  // }
 }
 
+//--------------------------------------------
+
 function createModalForm(modalCard) {
-  // console.log(customDrinkForm)
-
-  const modalForm = document.createElement("form")
-  // if the id <=5 make the inner HTML this:
-
-  modalForm.innerHTML = `
+  console.log(modalCard)
+  
+  if(modalCard.id!=="customModalCard"){
+    const modalForm = document.createElement("form")
+    modalForm.innerHTML = `
             <label>Size</label>
             <select id="sizeSelector" name="size">
               <option value="small">Small</option>
@@ -90,34 +98,46 @@ function createModalForm(modalCard) {
             <input name="flavor" placeholder = "What's your flavor" ></input>
             <input id = "submit" type="submit" value="Add to cart" />
             `
-
-  // if there is no ID or if the ID is greater 5, make the inner HTML this:
-
-  modalForm.addEventListener("submit", addToCart)
-  modalCard.append(modalForm)
+    modalForm.addEventListener("submit", addToCart)
+    modalCard.append(modalForm)
+  } else {
+      const addToCartButton= document.createElement('button')
+      addToCartButton.textContent="Add to Cart"
+      modalCard.append(addToCartButton)
+      addToCartButton.addEventListener('click', addToCart)
+  }
 }
 
+
 function addToCart(e) {
-  e.preventDefault()
-  let coffeeChoiceObj = {
-    size: e.target.size.value,
-    flavor: e.target.flavor.value,
-  }
+    const cartItem = document.createElement("span")
 
-  const deleteButton = document.createElement("button")
-  const cartItem = document.createElement("span")
-  e.target.parentNode.style.display = "none"
+//-------handling submit---------
 
-  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
-  deleteButton.addEventListener("click", (e) => {
+    if (e['type']==="submit"){
+        e.preventDefault()
+        let coffeeChoiceObj = {
+            size: e.target.size.value,
+            flavor: e.target.flavor.value,
+        }
+    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${e.target.parentNode.querySelector("p").textContent}`
+    } else if (e['type']==="click")
+    {
+        cartItem.textContent=(document.querySelector('.name').textContent)
+    }
+
+    const deleteButton = document.createElement("button")
+
+    e.target.parentNode.style.display = "none"
+
+    deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+    deleteButton.addEventListener("click", (e) => {
     cartItem.remove()
-  })
+    })
 
-  cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
-    coffeeChoiceObj.flavor
-  } ${e.target.parentNode.querySelector("p").textContent}`
-  cartItem.append(deleteButton)
-  cart.append(cartItem)
+
+    cartItem.append(deleteButton)
+    cart.append(cartItem)
 }
 
 customDrinkForm.addEventListener("submit", addToMenu)
@@ -209,6 +229,7 @@ function addToMenu(e) {
 //reflect price when flavors and size are changed
 // key functions for closing modal and/or entering form (enter keyboard to submit form)
 //add amount dropdown to order form
+//only one modal can be up at a time
 
 //CLEANUP
 //line break in cart
