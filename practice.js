@@ -109,22 +109,34 @@ function createModalForm(modalCard) {
 }
 
 function addToCart(e) {
-  const cartItem = document.createElement("span")
+    const cartItem = document.createElement("span")
+    let cartPrice=document.createElement('span')
+    cartPrice.className="cartPrice"
+    let totalPrice=document.querySelector('.totalPrice').textContent
+
+    let cartPriceNum=(parseFloat(cartPrice.textContent))
+    let totalPriceNum=(parseFloat(totalPrice))
+    
+
 
   if (e["type"] === "submit") {
     e.preventDefault()
+    
     const {size, flavor}=e.target
     let coffeeChoiceObj = {
       size: size.value,
       flavor: flavor.value,
       price: e.target.parentNode.childNodes[2].textContent
     }
+    
+    cartPrice.textContent=`${coffeeChoiceObj.price}`
     cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} 
-    ${e.target.parentNode.querySelector("p").textContent} $${coffeeChoiceObj.price} `
+    ${e.target.parentNode.querySelector("p").textContent} $${cartPrice.textContent}`
+    console.log(totalPriceNum)
   } else if (e["type"] === "click") {
     const customName=e.target.parentNode.childNodes[1].textContent
-    const customPrice=e.target.parentNode.childNodes[2].textContent
-    cartItem.textContent = `1x  ${customName} $${customPrice}`
+    cartPrice.textContent=e.target.parentNode.childNodes[2].textContent
+    cartItem.textContent = `1x  ${customName} $${cartPrice.textContent}`
   }
 
   const deleteButton = document.createElement("button")
@@ -135,6 +147,9 @@ function addToCart(e) {
   deleteButton.addEventListener("click", (e) => {
     cartItem.remove()
   })
+
+
+
 
   cartItem.append(deleteButton)
   document.querySelector('.cartItems').append(cartItem)
