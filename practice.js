@@ -82,7 +82,7 @@ function createModalCard(drinkObj) {
 //--------------------------------------------
 
 function createModalForm(modalCard) {
-  console.log(modalCard)
+
 
   if (modalCard.id !== "customModalCard") {
     const modalForm = document.createElement("form")
@@ -110,12 +110,11 @@ function createModalForm(modalCard) {
 
 function addToCart(e) {
   const cartItem = document.createElement("span")
-  let cartPrice = document.createElement("span")
-  cartPrice.className = "cartPrice"
-  let totalPrice = document.querySelector(".totalPrice").textContent
-
-  let cartPriceNum = parseFloat(cartPrice.textContent)
-  let totalPriceNum = parseFloat(totalPrice)
+  let itemPrice = document.createElement("span")
+  itemPrice.className = "itemPrice"
+  let totalPrice = document.querySelector(".totalPrice")
+  let itemPriceNum = itemPrice.textContent
+  let totalPriceNum = parseFloat(totalPrice.textContent)
 
   if (e["type"] === "submit") {
     e.preventDefault()
@@ -127,19 +126,26 @@ function addToCart(e) {
       price: e.target.parentNode.childNodes[2].textContent,
     }
 
-    cartPrice.textContent = `${coffeeChoiceObj.price}`
+
     cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
       coffeeChoiceObj.flavor
     } 
     ${e.target.parentNode.querySelector("p").textContent} $${
-      cartPrice.textContent
+        coffeeChoiceObj.price
     }`
-    console.log(totalPriceNum)
+    totalPriceNum+=parseFloat(coffeeChoiceObj.price)
+    totalPrice.textContent=totalPriceNum
+
   } else if (e["type"] === "click") {
     const customName = e.target.parentNode.childNodes[1].textContent
-    cartPrice.textContent = e.target.parentNode.childNodes[2].textContent
-    cartItem.textContent = `1x  ${customName} $${cartPrice.textContent}`
+
+    itemPrice.textContent = e.target.parentNode.childNodes[2].textContent
+    cartItem.textContent = `1x  ${customName} $${itemPrice.textContent}`
+    
+    totalPriceNum+=parseFloat(itemPrice.textContent)
+    totalPrice.textContent=totalPriceNum
   }
+
 
   const deleteButton = document.createElement("button")
 
