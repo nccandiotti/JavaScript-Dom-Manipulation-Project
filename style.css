@@ -9,17 +9,24 @@ body {
   padding: 0;
   font-family: "Special Elite", cursive;
   margin-bottom: 100px;
+  position: relative;
+  box-sizing: border-box;
+  /* overflow: hidden; */
 }
 
 header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  max-height: 250px;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
   margin-bottom: 40px;
+  position: relative;
 }
 
 h1 {
-  align-self: center;
+  /* align-self: center; */
+  position: absolute;
+  top: 20px;
   font-size: 60px;
   text-align: center;
   padding-left: 40px;
@@ -30,9 +37,10 @@ h1 {
 }
 
 .banner {
-  max-width: 70%;
+  width: 100%;
+  height: 250px;
   align-items: right;
-  filter: blur(1px);
+  /* filter: blur(1px); */
 }
 
 .drinkCard img {
@@ -47,18 +55,47 @@ h1 {
 }
 
 #bigDiv {
+  overflow: auto;
+  display: inline-block;
+  /* flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center; */
+}
+
+#mediumDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+#cart,
+#customDrink {
+  min-width: 260px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+
+  margin: 20px 20px;
+  border: 5px solid rgb(103, 71, 54);
+  border-radius: 40px;
+  padding: 40px;
+  /* display: flex;
+  flex: 1 1 auto; */
+
+  line-height: 30px;
 }
 
-#cart {
-    max-width: 30%;
-    border: 5px solid rgb(103,71,54);
-    padding: 10px;
-}
+/* #customDrink {
+  border: 5px solid rgb(103, 71, 54);
+  padding: 20px;
+  border-radius: 40px;
+  display: flex;
+  margin: 20px 20px;
+} */
 
 #menuContainer {
   display: flex;
@@ -66,13 +103,15 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  max-width: 70%
+  max-width: 70%;
+  float: right;
+  right: 0;
 }
-
-
 
 .modalCard {
   display: none;
+  position: relative;
+  line-height: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -84,7 +123,17 @@ h1 {
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
-
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 4rem;
+  font-size: 3rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-radius: 40%;
+}
 .overlay {
   position: absolute;
   top: 0;
@@ -102,3 +151,22 @@ button {
   height: 18px;
 }
 
+input {
+  /* width: 100%; */
+  border-radius: 40px;
+  padding: 12px 20px;
+  /* margin: 8px 0;  */
+  box-sizing: border-box;
+}
+
+/* 
+ cart
+ banner
+ change latte pic
+ hover over coffee cards drop shadow
+ change header size
+ animation? 
+ maybe a little circle image icon next to cart item
+ maybe a little circle image icon next to cart item
+
+  */

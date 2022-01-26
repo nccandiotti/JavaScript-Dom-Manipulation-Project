@@ -55,6 +55,7 @@ function displayDrinks(drinkArray) {
         const deleteButton = document.createElement("button")
         const cartItem = document.createElement("span")
         modalCard.style.display = "none"
+        // document.style.classList.add("overlay")
 
         deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
         deleteButton.addEventListener("click", (e) => {
@@ -89,19 +90,19 @@ function displayDrinks(drinkArray) {
 }
 // ----------------- custom drink form ------------
 customDrinkForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-    const deleteButton = document.createElement("button")
-    const cartItem = document.createElement("span")
-    const customDrinkImage=document.createElement('img')
-    customDrinkImage.src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.insider.com%2Fbest-latte-art-2018-10&psig=AOvVaw1BQdjTtbyduymWwhcRPUrD&ust=1643232089331000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKifyurqzfUCFQAAAAAdAAAAABAD'
-  
-  
-    deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
-    deleteButton.addEventListener("click", (e) => {
-      cartItem.remove()
-    })
-    menuContainer.append()
+  e.preventDefault()
+  const deleteButton = document.createElement("button")
+  const cartItem = document.createElement("span")
+  const customDrinkImage = document.createElement("img")
+  customDrinkImage.src =
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.insider.com%2Fbest-latte-art-2018-10&psig=AOvVaw1BQdjTtbyduymWwhcRPUrD&ust=1643232089331000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKifyurqzfUCFQAAAAAdAAAAABAD"
+
+  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+  deleteButton.addEventListener("click", (e) => {
+    cartItem.remove()
   })
+  menuContainer.append()
+})
 
 // function render
 
