@@ -28,7 +28,7 @@ function displayDrinks(drinkObj) {
     const customDrinkDeleteBtn = document.createElement("button")
     customDrinkDeleteBtn.textContent = "TRASHCAN"
     drinkCard.append(customDrinkDeleteBtn)
-    console.log(drinkObj.id)
+    // console.log(drinkObj.id)
     customDrinkDeleteBtn.addEventListener("click", () => {
       fetch(`http://localhost:3000/coffee/${drinkObj.id}`, {
         method: "DELETE",
@@ -73,7 +73,11 @@ function createModalCard(drinkObj) {
 }
 
 function createModalForm(modalCard) {
+  // console.log(customDrinkForm)
+
   const modalForm = document.createElement("form")
+  // if the id <=5 make the inner HTML this:
+
   modalForm.innerHTML = `
             <label>Size</label>
             <select id="sizeSelector" name="size">
@@ -86,6 +90,9 @@ function createModalForm(modalCard) {
             <input name="flavor" placeholder = "What's your flavor" ></input>
             <input id = "submit" type="submit" value="Add to cart" />
             `
+
+  // if there is no ID or if the ID is greater 5, make the inner HTML this:
+
   modalForm.addEventListener("submit", addToCart)
   modalCard.append(modalForm)
 }
@@ -126,7 +133,7 @@ function addToMenu(e) {
     image:
       "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
   }
-  // --------POST REQUEST --------
+  // --------POST REQUEST TO ADD NEW DRINKS TO MENU--------
   fetch(allCoffeesUrl, {
     method: "POST",
     body: JSON.stringify(newDrinkObj),
@@ -189,8 +196,8 @@ function addToMenu(e) {
 //name input-will replace drink name when posted to db.json
 
 //----TOMORROW----//
-//POST new custom drink
-//Delete custom drink
+//POST new custom drink✅
+//Delete custom drink✅
 //calculate price
 //fix modalCard for new custom drink
 
