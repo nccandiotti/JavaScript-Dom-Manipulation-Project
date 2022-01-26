@@ -54,7 +54,7 @@ function createModalCard(drinkObj) {
   const exitButton = document.createElement("button")
 
   coffeeName.className = "name"
-  coffeePrice.classNAme = "price"
+  coffeePrice.className = "coffeePrice"
 
   coffeeName.textContent = drinkObj.drink
   coffeePrice.textContent = drinkObj.price
@@ -111,19 +111,20 @@ function createModalForm(modalCard) {
 function addToCart(e) {
   const cartItem = document.createElement("span")
 
-  //-------handling submit---------
-
   if (e["type"] === "submit") {
     e.preventDefault()
+    const {size, flavor}=e.target
     let coffeeChoiceObj = {
-      size: e.target.size.value,
-      flavor: e.target.flavor.value,
+      size: size.value,
+      flavor: flavor.value,
+      price: e.target.parentNode.childNodes[2].textContent
     }
-    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
-      coffeeChoiceObj.flavor
-    } ${e.target.parentNode.querySelector("p").textContent}`
+    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} 
+    ${e.target.parentNode.querySelector("p").textContent} $${coffeeChoiceObj.price} `
   } else if (e["type"] === "click") {
-    cartItem.textContent = document.querySelector(".name").textContent
+    const customName=e.target.parentNode.childNodes[1].textContent
+    const customPrice=e.target.parentNode.childNodes[2].textContent
+    cartItem.textContent = `1x  ${customName} $${customPrice}`
   }
 
   const deleteButton = document.createElement("button")
@@ -136,8 +137,11 @@ function addToCart(e) {
   })
 
   cartItem.append(deleteButton)
-  cart.append(cartItem)
+  document.querySelector('.cartItems').append(cartItem)
 }
+//when an item is added, grab the price and add it to the total cart price
+
+
 
 customDrinkForm.addEventListener("submit", addToMenu)
 
@@ -162,31 +166,15 @@ function addToMenu(e) {
   }).then((response) => response.json())
 
   displayDrinks(newDrinkObj)
-
-  //-----------------POSTin'------------>
-
-  // const deleteButton = document.createElement("button")
-  //   const cartItem = document.createElement("span")
-  //   const customDrinkImage=document.createElement('img')
-  //   customDrinkImage.src=''
-  //   drinkCard.innerHTML = `
-  //         <h2>${drinkObj.drink}</h2>
-  //         <img src =${drinkObj.image}>
-  //         `
-  //   const customDrinkObj={
-  //       name: e.target.customDrink.value,
-  //       image: customDrinkImage,
-  //   }
-  //   console.log(customDrinkObj)
-  //   displayDrinks(customDrinkObj)
-  //   drinkCard.append(customDrinkObj)
-  //   menuContainer.append(drinkCard)
 }
 
-// function render
 
-//-----------event listeners-------------
+//-----------price calculator-------------
 
+
+function calculatePrice(Obj){
+    
+}
 //Fetch Coffees✅
 //render Images into menu container with names✅
 //add click event to coffee cards that:✅
@@ -207,18 +195,18 @@ function addToMenu(e) {
 
 //--------//
 
-//create a drink form with:
-//default values for all inputs
-//base drink
-//flavor input
-//size dropdown
-//name input-will replace drink name when posted to db.json
+//create a drink form with:✅
+//default values for all inputs✅
+//base drink✅
+//flavor input✅
+//size dropdown✅
+//name input-will replace drink name when posted to db.json✅
 
 //----TOMORROW----//
 //POST new custom drink✅
 //Delete custom drink✅
 //calculate price
-//fix modalCard for new custom drink
+//fix modalCard for new custom drink✅
 
 //STRETCH
 //populate nav bar with filter option for coffee/tea

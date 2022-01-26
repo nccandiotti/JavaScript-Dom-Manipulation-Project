@@ -85,6 +85,11 @@ h1 {
   margin-bottom: 20px;
 }
 
+.cartItems::after: {
+  content: "\a";
+  white-space: pre;
+}
+
 #customDrink {
   grid-area: 3 / 1 / 5 / 4;
   border: solid rgb(17, 63, 31);
