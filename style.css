@@ -74,8 +74,6 @@ h1 {
 
 #cart,
 #customDrink {
-  /* display: flex;
-  flex-direction: column; */
   /* min-width: 260px;
   display: flex;
   flex-direction: row;
@@ -108,6 +106,7 @@ h1 {
   justify-content: center;
   align-items: center;
   max-width: 70%;
+  float: right;
   right: 0;
 }
 
@@ -161,3 +160,4 @@ input {
   /* margin: 8px 0;  */
   box-sizing: border-box;
 }
+

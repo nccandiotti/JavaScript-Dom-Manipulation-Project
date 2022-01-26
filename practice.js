@@ -17,6 +17,8 @@ function fetchDrinks() {
     
 }
 
+
+//---------logic------>
 function displayDrinks(drinkObj){
     const drinkCard = document.createElement("div")
     drinkCard.className = "drinkCard"
@@ -24,6 +26,7 @@ function displayDrinks(drinkObj){
         <h2>${drinkObj.drink}</h2>
         <img src =${drinkObj.image}> 
         `
+    //if new drink, add delete button
     drinkCard.addEventListener("click", ()=>createModalCard(drinkObj))
     menuContainer.append(drinkCard)
 }
@@ -113,12 +116,25 @@ function addToMenu(e){
   
   let newDrinkObj = {
     drink: e.target.customDrink.value,
+    price: "6.00",
+    size: e.target.size.value,
+    flavor: e.target.flavor.value,
     image: "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg"
+
   }
-//   modalForm.style.display="none"
-console.log(e.target)
+  fetch(allCoffeesUrl , {
+    method: 'POST',
+    body: JSON.stringify(newDrinkObj),
+    headers: {
+    "Content-type": "application/json; charset=UTF-8"
+    }
+    })
+    .then(response => response.json())
+
   displayDrinks(newDrinkObj) 
 
+
+//-----------------POSTin'------------>
 
 
 
