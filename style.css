@@ -5,9 +5,10 @@ html {
 }
 
 body {
+  color: rgb(17, 63, 31);
   margin: 0;
   padding: 0;
-  font-family: "Special Elite", cursive;
+  font-family: "Lato", sans-serif;
   margin-bottom: 100px;
   position: relative;
   box-sizing: border-box;
@@ -21,6 +22,7 @@ header {
 
 h1 {
   position: absolute;
+  font-weight: 300;
   top: 20px;
   font-size: 60px;
   text-align: center;
@@ -35,12 +37,13 @@ h1 {
   width: 100%;
   height: 250px;
   align-items: right;
+  background: linear-gradient(110deg, #ade0d5 60%, #578d82 60%);
 }
 
 .drinkCard img {
   width: 200px;
   height: 200px;
-  border-radius: 20%;
+  border-radius: 5%;
 }
 
 .drinkCard {
@@ -73,18 +76,18 @@ h1 {
 #customDrink {
   padding: 20px 20px;
   line-height: 30px;
-  border-radius: 40px;
+  border-radius: 20px;
 }
 
 #cart {
   grid-area: 1 / 1 / 3 / 4;
-  border: solid black;
+  border: solid rgb(17, 63, 31);
   margin-bottom: 20px;
 }
 
 #customDrink {
   grid-area: 3 / 1 / 5 / 4;
-  border: solid black;
+  border: solid rgb(17, 63, 31);
 }
 
 #smallDiv {
@@ -101,19 +104,36 @@ h1 {
 
 .modalCard {
   display: none;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 2px;
+
   position: relative;
   line-height: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%;
+  /* width: 50%; */
   background-color: white;
   padding: 6rem;
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
+  padding: 20px 20px;
+  /* line-height: 30px; */
+  border-radius: 20px;
+  border: solid rgb(17, 63, 31);
+  margin-bottom: 20px;
 }
+
+.modalCard img {
+  border-radius: 20px;
+  height: 200px;
+  width: 200px;
+}
+
 .close-modal {
   position: absolute;
   top: 1.2rem;
@@ -131,10 +151,16 @@ button {
   width: 18px;
   height: 18px;
 }
+button .close-modal {
+  text-align: center;
 
+  width: 18px;
+  height: 18px;
+}
 input {
-  border-radius: 40px;
+  border-radius: 20px;
   padding: 12px 20px;
+  margin: 5px 5px;
   box-sizing: border-box;
 }
 

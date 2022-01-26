@@ -7,7 +7,6 @@ const customDrink = document.querySelector("#customDrink")
 const allCoffeesUrl = "http://localhost:3000/coffee"
 const customDrinkForm = document.querySelector("#customDrinkForm")
 
-
 // --------------- fetch request -----------
 
 fetchDrinks()
@@ -48,14 +47,14 @@ function displayDrinks(drinkObj) {
 function createModalCard(drinkObj) {
   const modalCard = document.createElement("div")
   modalCard.className = "modalCard"
-  modalCard.style.display = "block"
+  modalCard.style.display = "grid"
   const coffeeName = document.createElement("p")
   const coffeePrice = document.createElement("p")
   const coffeeImage = document.createElement("img")
   const exitButton = document.createElement("button")
 
-coffeeName.className="name"
-coffeePrice.classNAme="price"
+  coffeeName.className = "name"
+  coffeePrice.classNAme = "price"
 
   coffeeName.textContent = drinkObj.drink
   coffeePrice.textContent = drinkObj.price
@@ -69,22 +68,23 @@ coffeePrice.classNAme="price"
   })
 
   if (!drinkObj.id || drinkObj.id > 5) {
-      modalCard.id="customModalCard"}
+    modalCard.id = "customModalCard"
+  }
 
   modalCard.append(exitButton)
   modalCard.append(coffeeName)
-  modalCard.append(coffeeImage)
   modalCard.append(coffeePrice)
   menuContainer.append(modalCard)
   createModalForm(modalCard)
+  modalCard.append(coffeeImage)
 }
 
 //--------------------------------------------
 
 function createModalForm(modalCard) {
   console.log(modalCard)
-  
-  if(modalCard.id!=="customModalCard"){
+
+  if (modalCard.id !== "customModalCard") {
     const modalForm = document.createElement("form")
     modalForm.innerHTML = `
             <label>Size</label>
@@ -95,49 +95,48 @@ function createModalForm(modalCard) {
             </select> <br>
 
             <label>Flavors</label>
-            <input name="flavor" placeholder = "What's your flavor" ></input>
+            <input name="flavor" placeholder = "What's your flavor" ></input> <br>
             <input id = "submit" type="submit" value="Add to cart" />
             `
     modalForm.addEventListener("submit", addToCart)
     modalCard.append(modalForm)
   } else {
-      const addToCartButton= document.createElement('button')
-      addToCartButton.textContent="Add to Cart"
-      modalCard.append(addToCartButton)
-      addToCartButton.addEventListener('click', addToCart)
+    const addToCartButton = document.createElement("button")
+    addToCartButton.textContent = "Add to Cart"
+    modalCard.append(addToCartButton)
+    addToCartButton.addEventListener("click", addToCart)
   }
 }
 
-
 function addToCart(e) {
-    const cartItem = document.createElement("span")
+  const cartItem = document.createElement("span")
 
-//-------handling submit---------
+  //-------handling submit---------
 
-    if (e['type']==="submit"){
-        e.preventDefault()
-        let coffeeChoiceObj = {
-            size: e.target.size.value,
-            flavor: e.target.flavor.value,
-        }
-    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${e.target.parentNode.querySelector("p").textContent}`
-    } else if (e['type']==="click")
-    {
-        cartItem.textContent=(document.querySelector('.name').textContent)
+  if (e["type"] === "submit") {
+    e.preventDefault()
+    let coffeeChoiceObj = {
+      size: e.target.size.value,
+      flavor: e.target.flavor.value,
     }
+    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
+      coffeeChoiceObj.flavor
+    } ${e.target.parentNode.querySelector("p").textContent}`
+  } else if (e["type"] === "click") {
+    cartItem.textContent = document.querySelector(".name").textContent
+  }
 
-    const deleteButton = document.createElement("button")
+  const deleteButton = document.createElement("button")
 
-    e.target.parentNode.style.display = "none"
+  e.target.parentNode.style.display = "none"
 
-    deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
-    deleteButton.addEventListener("click", (e) => {
+  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+  deleteButton.addEventListener("click", (e) => {
     cartItem.remove()
-    })
+  })
 
-
-    cartItem.append(deleteButton)
-    cart.append(cartItem)
+  cartItem.append(deleteButton)
+  cart.append(cartItem)
 }
 
 customDrinkForm.addEventListener("submit", addToMenu)
