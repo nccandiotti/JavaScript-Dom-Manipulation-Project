@@ -11,65 +11,70 @@ fetchDrinks()
 function fetchDrinks() {
   return fetch(allCoffeesUrl)
     .then((response) => response.json())
-    .then(drinkArray => {
-        drinkArray.forEach(drinkObj => displayDrinks(drinkObj))
-     })
-    
+    .then((drinkArray) => {
+      drinkArray.forEach((drinkObj) => displayDrinks(drinkObj))
+    })
 }
 
-
 //---------logic------>
-function displayDrinks(drinkObj){
-    const drinkCard = document.createElement("div")
-    drinkCard.className = "drinkCard"
-    drinkCard.innerHTML = `
+function displayDrinks(drinkObj) {
+  const drinkCard = document.createElement("div")
+  drinkCard.className = "drinkCard"
+  drinkCard.innerHTML = `
         <h2>${drinkObj.drink}</h2>
         <img src =${drinkObj.image}> 
         `
-    //if new drink, add delete button
-    drinkCard.addEventListener("click", ()=>createModalCard(drinkObj))
-    menuContainer.append(drinkCard)
-}
-
-function createModalCard(drinkObj){
-    const modalCard = document.createElement("div")
-      modalCard.className = "modalCard"
-      modalCard.style.display = "block"
-      const coffeeName = document.createElement("p")
-      const coffeePrice = document.createElement("p")
-      const coffeeImage = document.createElement("img")
-      const exitButton = document.createElement("button")
-
-
-      coffeeName.textContent = drinkObj.drink
-      coffeePrice.textContent = drinkObj.price
-      coffeeImage.style.maxHeight = "200px"
-      coffeeImage.src = drinkObj.image
-      
-
-
-      exitButton.className = "close-modal"
-      exitButton.textContent = "x"
-      exitButton.addEventListener("click", () => {
-        modalCard.style.display = "none"
+  if (!drinkObj.id || drinkObj.id > 5) {
+    const customDrinkDeleteBtn = document.createElement("button")
+    customDrinkDeleteBtn.textContent = "TRASHCAN"
+    drinkCard.append(customDrinkDeleteBtn)
+    console.log(drinkObj.id)
+    customDrinkDeleteBtn.addEventListener("click", () => {
+      fetch(`http://localhost:3000/coffee/${drinkObj.id}`, {
+        method: "DELETE",
       })
-
-    modalCard.append(exitButton)
-    modalCard.append(coffeeName)
-    modalCard.append(coffeeImage)
-    modalCard.append(coffeePrice)
-    menuContainer.append(modalCard)
-    createModalForm(modalCard)
-    // if(modal belongs to a new coffee){
-    //     set size option value to size selected
-    // }
-
+      drinkCard.remove()
+    })
+  }
+  //if new drink, add delete button
+  drinkCard.addEventListener("click", () => createModalCard(drinkObj))
+  menuContainer.append(drinkCard)
 }
 
+function createModalCard(drinkObj) {
+  const modalCard = document.createElement("div")
+  modalCard.className = "modalCard"
+  modalCard.style.display = "block"
+  const coffeeName = document.createElement("p")
+  const coffeePrice = document.createElement("p")
+  const coffeeImage = document.createElement("img")
+  const exitButton = document.createElement("button")
 
-function createModalForm(modalCard){
-    const modalForm = document.createElement("form")
-      modalForm.innerHTML = `
+  coffeeName.textContent = drinkObj.drink
+  coffeePrice.textContent = drinkObj.price
+  coffeeImage.style.maxHeight = "200px"
+  coffeeImage.src = drinkObj.image
+
+  exitButton.className = "close-modal"
+  exitButton.textContent = "x"
+  exitButton.addEventListener("click", () => {
+    modalCard.style.display = "none"
+  })
+
+  modalCard.append(exitButton)
+  modalCard.append(coffeeName)
+  modalCard.append(coffeeImage)
+  modalCard.append(coffeePrice)
+  menuContainer.append(modalCard)
+  createModalForm(modalCard)
+  // if(modal belongs to a new coffee){
+  //     set size option value to size selected
+  // }
+}
+
+function createModalForm(modalCard) {
+  const modalForm = document.createElement("form")
+  modalForm.innerHTML = `
             <label>Size</label>
             <select id="sizeSelector" name="size">
               <option value="small">Small</option>
@@ -81,87 +86,75 @@ function createModalForm(modalCard){
             <input name="flavor" placeholder = "What's your flavor" ></input>
             <input id = "submit" type="submit" value="Add to cart" />
             `
-        modalForm.addEventListener('submit', addToCart) 
-        modalCard.append(modalForm) 
-          
+  modalForm.addEventListener("submit", addToCart)
+  modalCard.append(modalForm)
 }
 
-function addToCart(e){
-    e.preventDefault()
-    let coffeeChoiceObj = {
-        size: e.target.size.value,
-        flavor: e.target.flavor.value,
-      }
+function addToCart(e) {
+  e.preventDefault()
+  let coffeeChoiceObj = {
+    size: e.target.size.value,
+    flavor: e.target.flavor.value,
+  }
 
-    const deleteButton = document.createElement("button")
-    const cartItem = document.createElement("span")
-    e.target.parentNode.style.display = "none"
+  const deleteButton = document.createElement("button")
+  const cartItem = document.createElement("span")
+  e.target.parentNode.style.display = "none"
 
-    deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
-    deleteButton.addEventListener("click", (e) => {
-      cartItem.remove()
-    })
+  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+  deleteButton.addEventListener("click", (e) => {
+    cartItem.remove()
+  })
 
-
-    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${e.target.parentNode.querySelector('p').textContent}`
-    cartItem.append(deleteButton)
-    cart.append(cartItem) 
+  cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
+    coffeeChoiceObj.flavor
+  } ${e.target.parentNode.querySelector("p").textContent}`
+  cartItem.append(deleteButton)
+  cart.append(cartItem)
 }
-
 
 customDrinkForm.addEventListener("submit", addToMenu)
 
-function addToMenu(e){
+function addToMenu(e) {
   e.preventDefault()
-  
+
   let newDrinkObj = {
     drink: e.target.customDrink.value,
     price: "6.00",
     size: e.target.size.value,
     flavor: e.target.flavor.value,
-    image: "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg"
-
+    image:
+      "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
   }
-  fetch(allCoffeesUrl , {
-    method: 'POST',
+  // --------POST REQUEST --------
+  fetch(allCoffeesUrl, {
+    method: "POST",
     body: JSON.stringify(newDrinkObj),
     headers: {
-    "Content-type": "application/json; charset=UTF-8"
-    }
-    })
-    .then(response => response.json())
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  }).then((response) => response.json())
 
-  displayDrinks(newDrinkObj) 
+  displayDrinks(newDrinkObj)
 
+  //-----------------POSTin'------------>
 
-//-----------------POSTin'------------>
-
-
-
-
-
-
-
-
-
-
-// const deleteButton = document.createElement("button")
-//   const cartItem = document.createElement("span")
-//   const customDrinkImage=document.createElement('img')
-//   customDrinkImage.src=''
-//   drinkCard.innerHTML = `
-//         <h2>${drinkObj.drink}</h2>
-//         <img src =${drinkObj.image}> 
-//         `
-//   const customDrinkObj={
-//       name: e.target.customDrink.value,
-//       image: customDrinkImage,
-//   }
-//   console.log(customDrinkObj)
-//   displayDrinks(customDrinkObj)
-//   drinkCard.append(customDrinkObj)
-//   menuContainer.append(drinkCard)
-  
+  // const deleteButton = document.createElement("button")
+  //   const cartItem = document.createElement("span")
+  //   const customDrinkImage=document.createElement('img')
+  //   customDrinkImage.src=''
+  //   drinkCard.innerHTML = `
+  //         <h2>${drinkObj.drink}</h2>
+  //         <img src =${drinkObj.image}>
+  //         `
+  //   const customDrinkObj={
+  //       name: e.target.customDrink.value,
+  //       image: customDrinkImage,
+  //   }
+  //   console.log(customDrinkObj)
+  //   displayDrinks(customDrinkObj)
+  //   drinkCard.append(customDrinkObj)
+  //   menuContainer.append(drinkCard)
 }
 
 // function render
@@ -173,8 +166,6 @@ function addToMenu(e){
 //add click event to coffee cards that:✅
 //render image, name, ✅
 //exit button ✅
-
-
 
 //render form to drink display ✅
 //a form with editable size, flavor ✅

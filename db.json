@@ -39,19 +39,6 @@
       "size": "medium",
       "flavor": "none",
       "image": "https://wholefully.com/wp-content/uploads/2019/11/homemade-chai-tea-gift-set-mug-735x1103.jpg"
-    },
-    {
-      "drink": "SprinkleDrink",
-      "image": "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
-      "id": 6
-    },
-    {
-      "drink": "SprinkleDrink",
-      "price": "6.00",
-      "size": "large",
-      "flavor": "Sugar",
-      "image": "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
-      "id": 7
     }
   ]
 }
