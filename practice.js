@@ -158,7 +158,7 @@ console.log(e.target)
 //render image, name, ✅
 //exit button ✅
 
-//----TOMORROW----//
+
 
 //render form to drink display ✅
 //a form with editable size, flavor ✅
@@ -180,6 +180,12 @@ console.log(e.target)
 //flavor input
 //size dropdown
 //name input-will replace drink name when posted to db.json
+
+//----TOMORROW----//
+//POST new custom drink
+//Delete custom drink
+//calculate price
+//fix modalCard for new custom drink
 
 //STRETCH
 //populate nav bar with filter option for coffee/tea
