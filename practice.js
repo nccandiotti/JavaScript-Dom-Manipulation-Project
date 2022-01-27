@@ -61,10 +61,11 @@ function createModalCard(drinkObj) {
   coffeeImage.style.maxHeight = "200px"
   coffeeImage.src = drinkObj.image
 
-  exitButton.className = "close-modal"
+  exitButton.className = "closeModal"
   exitButton.textContent = "x"
   exitButton.addEventListener("click", () => {
     modalCard.style.display = "none"
+    modalCard.remove()
   })
 
   if (!drinkObj.id || drinkObj.id > 5) {
@@ -74,7 +75,9 @@ function createModalCard(drinkObj) {
   modalCard.append(exitButton)
   modalCard.append(coffeeName)
   modalCard.append(coffeePrice)
+  if(document.querySelector('#menuContainer').lastChild.className==="drinkCard"){
   menuContainer.append(modalCard)
+  }
   createModalForm(modalCard)
   modalCard.append(coffeeImage)
 }
@@ -148,10 +151,11 @@ function addToCart(e) {
   deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.parentNode.childNodes[1]
-    let singlePriceFloat = parseFloat(singlePrice.textContent).toFixed(2)
+    console.log(singlePrice)
+    let singlePriceFloat = parseFloat(singlePrice.textContent)
 
     totalPrice.textContent = totalPriceNum - singlePriceFloat
-
+    console.log(totalPrice)
     cartItem.remove()
   })
 
@@ -187,7 +191,6 @@ function addToMenu(e) {
 
 //-----------price calculator-------------
 
-function calculatePrice(Obj) {}
 //Fetch Coffees✅
 //render Images into menu container with names✅
 //add click event to coffee cards that:✅
@@ -215,14 +218,22 @@ function calculatePrice(Obj) {}
 //size dropdown✅
 //name input-will replace drink name when posted to db.json✅
 
-//----TOMORROW----//
+
 //POST new custom drink✅
 //Delete custom drink✅
 //calculate price✅
 //fix modalCard for new custom drink✅
 
+//----TOMORROW----//
+//fixing calculator
+//one modal at a time
+//one line at a time in cart
+//keystrokes? for modal
+//fix x in modal box
+//style modal:blur, dropshadow
+//fix modal card submit issue
+
 //STRETCH
-//populate nav bar with filter option for coffee/tea
 //add comment section (reviews for shop)
 //add star rating?
 //change CSS featues based on selected flavor

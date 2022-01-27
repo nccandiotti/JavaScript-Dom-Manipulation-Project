@@ -139,7 +139,7 @@ h1 {
   width: 200px;
 }
 
-.close-modal {
+.closeModal {
   position: absolute;
   top: 1.2rem;
   right: 4rem;
@@ -156,7 +156,7 @@ button {
   width: 18px;
   height: 18px;
 }
-button .close-modal {
+button .closeModal {
   text-align: center;
 
   width: 18px;
