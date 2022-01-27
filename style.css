@@ -123,6 +123,7 @@ h3 span {
   display: flex;
   flex-direction: row;
   grid-area: 2 / 1 / 4 / 4;
+  max-height: 350px;
   border: solid #008151;
 }
 
@@ -155,7 +156,6 @@ h3 span {
   background-color: white;
   padding: 6rem;
   border-radius: 5px;
-  box-shadow: 100px 100px 100px rgba(0, 0, 0, 0.397);
   z-index: 10;
   padding: 20px 20px;
   /* line-height: 30px; */
