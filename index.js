@@ -12,6 +12,8 @@ function fetchDrinks() {
     .then((response) => response.json())
     .then((drinkArray) => displayDrinks(drinkArray))
 }
+
+
 // make a card for each coffee and append to menu?
 function displayDrinks(drinkArray) {
   drinkArray.forEach((drinkObj) => {
@@ -22,72 +24,82 @@ function displayDrinks(drinkArray) {
         <img src =${drinkObj.image} > 
         `
 
-    drinkCard.addEventListener("click", () => {
-      const modalCard = document.createElement("div")
-      modalCard.className = "modalCard"
-
-      const coffeeName = document.createElement("p")
-      const coffeePrice = document.createElement("p")
-      const coffeeImage = document.createElement("img")
-      const exitButton = document.createElement("button")
-      exitButton.className = "close-modal"
-      exitButton.textContent = "x"
-      exitButton.addEventListener("click", () => {
-        modalCard.style.display = "none"
-      })
-
-      const modalForm = document.createElement("form")
-      modalForm.innerHTML = `
-            <label>Size</label>
-            <select id="sizeSelector" name="size">
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select> <br>
-
-            <label>Flavors</label>
-            <input name="flavor" placeholder = "What's your flavor" ></input>
-            <input id = "submit" type="submit" value="Add to cart" />
-            `
-
-      modalForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-        const deleteButton = document.createElement("button")
-        const cartItem = document.createElement("span")
-        modalCard.style.display = "none"
-        // document.style.classList.add("overlay")
-
-        deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
-        deleteButton.addEventListener("click", (e) => {
-          cartItem.remove()
-        })
-
-        let coffeeChoiceObj = {
-          size: e.target.size.value,
-          flavor: e.target.flavor.value,
-        }
-
-        cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${drinkObj.drink}`
-        cartItem.append(deleteButton)
-        cart.append(cartItem)
-      })
-
-      coffeeName.textContent = drinkObj.drink
-      coffeePrice.textContent = drinkObj.price
-      coffeeImage.style.maxHeight = "200px"
-      coffeeImage.src = drinkObj.image
-      modalCard.style.display = "block"
-
-      modalCard.append(exitButton)
-      modalCard.append(coffeeName)
-      modalCard.append(coffeeImage)
-      modalCard.append(coffeePrice)
-      modalCard.append(modalForm)
-      menuContainer.append(modalCard)
-    })
+   
     menuContainer.append(drinkCard)
   })
 }
+
+
+//-----handling submit---------------//
+
+
+drinkCard.addEventListener("click", () => {
+  const modalCard = document.createElement("div")
+  modalCard.className = "modalCard"
+
+  const coffeeName = document.createElement("p")
+  const coffeePrice = document.createElement("p")
+  const coffeeImage = document.createElement("img")
+  const exitButton = document.createElement("button")
+  exitButton.className = "close-modal"
+  exitButton.textContent = "x"
+  exitButton.addEventListener("click", () => {
+    modalCard.style.display = "none"
+  })
+
+  const modalForm = document.createElement("form")
+  modalForm.innerHTML = `
+        <label>Size</label>
+        <select id="sizeSelector" name="size">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select> <br>
+
+        <label>Flavors</label>
+        <input name="flavor" placeholder = "What's your flavor" ></input>
+        <input id = "submit" type="submit" value="Add to cart" />
+        `
+
+  modalForm.addEventListener("submit", handleModalSubmit)
+
+  coffeeName.textContent = drinkObj.drink
+  coffeePrice.textContent = drinkObj.price
+  coffeeImage.style.maxHeight = "200px"
+  coffeeImage.src = drinkObj.image
+  modalCard.style.display = "block"
+
+  modalCard.append(exitButton)
+  modalCard.append(coffeeName)
+  modalCard.append(coffeeImage)
+  modalCard.append(coffeePrice)
+  modalCard.append(modalForm)
+  menuContainer.append(modalCard)
+})
+
+
+function handleModalSubmit{
+  e.preventDefault()
+  const deleteButton = document.createElement("button")
+  const cartItem = document.createElement("span")
+  modalCard.style.display = "none"
+
+  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+  deleteButton.addEventListener("click", (e) => {
+    cartItem.remove()
+  })
+
+  let coffeeChoiceObj = {
+    size: e.target.size.value,
+    flavor: e.target.flavor.value,
+  }
+
+  cartItem.textContent = `1x ${coffeeChoiceObj.size} ${coffeeChoiceObj.flavor} ${drinkObj.drink}`
+  cartItem.append(deleteButton)
+  cart.append(cartItem)
+}
+
+
 // ----------------- custom drink form ------------
 customDrinkForm.addEventListener("submit", (e) => {
   e.preventDefault()

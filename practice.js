@@ -28,6 +28,7 @@ function displayDrinks(drinkObj) {
         <h2>${drinkObj.drink}</h2>
         <img src =${drinkObj.image}> 
         `
+
   if (!drinkObj.id || drinkObj.id > 5) {
     const customDrinkDeleteBtn = document.createElement("button")
     customDrinkDeleteBtn.innerHTML = `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M9 3h6v-1.75c0-.066-.026-.13-.073-.177-.047-.047-.111-.073-.177-.073h-5.5c-.066 0-.13.026-.177.073-.047.047-.073.111-.073.177v1.75zm11 1h-16v18c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-18zm-10 3.5c0-.276-.224-.5-.5-.5s-.5.224-.5.5v12c0 .276.224.5.5.5s.5-.224.5-.5v-12zm5 0c0-.276-.224-.5-.5-.5s-.5.224-.5.5v12c0 .276.224.5.5.5s.5-.224.5-.5v-12zm8-4.5v1h-2v18c0 1.105-.895 2-2 2h-14c-1.105 0-2-.895-2-2v-18h-2v-1h7v-2c0-.552.448-1 1-1h6c.552 0 1 .448 1 1v2h7z"/></svg>`
@@ -39,6 +40,7 @@ function displayDrinks(drinkObj) {
       drinkCard.remove()
     })
   }
+  
   drinkCard.addEventListener("click", () => createModalCard(drinkObj))
   menuContainer.append(drinkCard)
 }
@@ -88,8 +90,8 @@ function createModalForm(modalCard) {
             <label>Size</label>
             <select id="sizeSelector" name="size">
               <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
+              <option value="medium">Medium     +$0.50</option>
+              <option value="large">Large     +$1.00</option>
             </select> <br>
 
             <label>Flavors</label>
@@ -100,6 +102,18 @@ function createModalForm(modalCard) {
             </input>
             </label>
             `
+
+
+            
+            // const  option=document.getElementById('sizeSelector').value     
+            // console.log(option) 
+            // if (option==="medium"){
+            //   console.log('option')
+            // }
+
+
+
+
 
     modalForm.addEventListener("submit", addToCart)
     modalCard.append(modalForm)
@@ -122,11 +136,11 @@ function addToCart(e) {
       flavor: flavor.value,
       price: e.target.parentNode.childNodes[2].textContent,
     }
-    cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} ${
-      coffeeChoiceObj.flavor
-    } ${
-      e.target.parentNode.querySelector("p").textContent
-    } $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
+    cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} 
+    ${coffeeChoiceObj.flavor} ${e.target.parentNode.querySelector("p").textContent}
+     $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
+
+
     totalPriceNum += parseFloat(coffeeChoiceObj.price)
     totalPrice.textContent = totalPriceNum.toFixed(2)
   } else if (e["type"] === "click") {
@@ -144,12 +158,6 @@ function addToCart(e) {
   e.target.parentNode.style.display = "none"
 
   deleteButton.textContent = "x"
-  // `<svg class="cartDeleteButton" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="10" height="10">
-
-  // <g transform="matrix(0.4166667 0 0 0.4166667 0 0)">
-  //     <path d="M12 11.293L22.293 1L23 1.707L12.707 12L23 22.293L22.293 23L11.999999 12.707L1.7069988 23L0.9999988 22.293L11.292999 11.999999L0.99999905 1.7069988L1.7069991 0.9999988L11.999999 11.292999L12 11.293z" stroke="none" fill="#000000" fill-rule="nonzero" />
-  // </g>
-  // </svg>`
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.childNodes[2].textContent
     let singlePriceNum = parseFloat(singlePrice)
@@ -162,7 +170,6 @@ function addToCart(e) {
   cartItem.append(deleteButton)
   document.querySelector(".cartItems").append(cartItem)
 }
-//when an item is added, grab the price and add it to the total cart price
 
 customDrinkForm.addEventListener("submit", addToMenu)
 
@@ -177,7 +184,6 @@ function addToMenu(e) {
     image:
       "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
   }
-  // --------POST REQUEST TO ADD NEW DRINKS TO MENU--------
   fetch(allCoffeesUrl, {
     method: "POST",
     body: JSON.stringify(newDrinkObj),

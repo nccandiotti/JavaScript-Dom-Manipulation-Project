@@ -120,7 +120,7 @@ h3 span {
 }
 
 #customDrink {
-  display: flex;
+  box-sizing: border-box;
   flex-direction: row;
   grid-area: 2 / 1 / 4 / 4;
   max-height: 350px;
