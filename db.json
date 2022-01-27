@@ -41,28 +41,12 @@
       "image": "https://wholefully.com/wp-content/uploads/2019/11/homemade-chai-tea-gift-set-mug-735x1103.jpg"
     },
     {
-      "drink": "SprinkleDrink",
-      "price": "6.00",
-      "size": "small",
-      "flavor": "Sugar",
-      "image": "images/fallon-michael-eVHnCElp0bk-unsplash.jpg",
-      "id": 6
-    },
-    {
-      "drink": "SprinkleDrink",
-      "price": "6.00",
-      "size": "small",
-      "flavor": "Sugar",
-      "image": "images/fallon-michael-eVHnCElp0bk-unsplash.jpg",
-      "id": 7
-    },
-    {
-      "drink": "",
+      "drink": "caramel latte",
       "price": "6.00",
       "size": "small",
       "flavor": "",
-      "image": "images/fallon-michael-eVHnCElp0bk-unsplash.jpg",
-      "id": 8
+      "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
+      "id": 6
     }
   ]
 }

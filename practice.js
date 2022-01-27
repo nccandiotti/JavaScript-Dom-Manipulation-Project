@@ -6,7 +6,7 @@ const cart = document.querySelector("#cart")
 const customDrink = document.querySelector("#customDrink")
 const allCoffeesUrl = "http://localhost:3000/coffee"
 const customDrinkForm = document.querySelector("#customDrinkForm")
-const body=document.querySelector('body')
+const body = document.querySelector("body")
 
 // --------------- fetch request -----------
 
@@ -124,7 +124,9 @@ function addToCart(e) {
     }
     cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} ${
       coffeeChoiceObj.flavor
-    } ${e.target.parentNode.querySelector("p").textContent} $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
+    } ${
+      e.target.parentNode.querySelector("p").textContent
+    } $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
     totalPriceNum += parseFloat(coffeeChoiceObj.price)
     totalPrice.textContent = totalPriceNum.toFixed(2)
   } else if (e["type"] === "click") {
@@ -151,12 +153,12 @@ function addToCart(e) {
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.childNodes[2].textContent
     let singlePriceNum = parseFloat(singlePrice)
-    let priceBeforeDeletionNum=parseFloat(totalPrice.textContent)
-    let updatedTotal=priceBeforeDeletionNum-singlePriceNum
-    totalPrice.textContent=updatedTotal
+    let priceBeforeDeletionNum = parseFloat(totalPrice.textContent)
+    let updatedTotal = priceBeforeDeletionNum - singlePriceNum
+    totalPrice.textContent = updatedTotal
     cartItem.remove()
   })
-  
+
   cartItem.append(deleteButton)
   document.querySelector(".cartItems").append(cartItem)
 }
@@ -172,7 +174,8 @@ function addToMenu(e) {
     price: "6.00",
     size: e.target.size.value,
     flavor: e.target.flavor.value,
-    image: "images/fallon-michael-eVHnCElp0bk-unsplash.jpg",
+    image:
+      "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
   }
   // --------POST REQUEST TO ADD NEW DRINKS TO MENU--------
   fetch(allCoffeesUrl, {
@@ -221,29 +224,17 @@ function addToMenu(e) {
 //fix modalCard for new custom drink✅
 
 //----TOMORROW----//
-//fixing calculator
+//fixing calculator✅
 //one modal at a time
-//one line at a time in cart
+//one line at a time in cart✅
 //keystrokes? for modal
 //fix x in modal box✅
 //style modal:blur, dropshadow
 //fix modal card submit issue✅
 
-//STRETCH
-//add comment section (reviews for shop)
-//add star rating?
-//change CSS featues based on selected flavor
-//reflect price when flavors and size are changed
-// key functions for closing modal and/or entering form (enter keyboard to submit form)
-//add amount dropdown to order form
-//only one modal can be up at a time
-
 //CLEANUP
-//line break in cart
 //function breakup
-//"your total is" after cartItem
+//"your total is" after cartItem✅
 
 // GREG QUESTIONS ------
-// line breaks
-// decreasing value in cart
 // one modal at a time

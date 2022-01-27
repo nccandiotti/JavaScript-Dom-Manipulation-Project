@@ -31,6 +31,7 @@ body {
 }
 
 header {
+  position: sticky;
   max-height: 250px;
   margin-bottom: 40px;
   position: relative;
@@ -59,9 +60,10 @@ h3 span {
 
 .banner {
   width: 100%;
-  height: 250px;
+  height: 200px;
   align-items: right;
   background: linear-gradient(110deg, #bff2e7 60%, #1a5447 60%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.623);
 }
 
 .coffeeIcon {
@@ -104,13 +106,15 @@ h3 span {
 
 #cart,
 #customDrink {
+  margin: 20px 20px;
   padding: 20px 20px;
   line-height: 30px;
   border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.397);
 }
 
 #cart {
-  grid-area: 1 / 1 / 3 / 4;
+  grid-area: 1 / 1 / 2 / 4;
   border: solid #008151;
   margin-bottom: 20px;
 }
@@ -118,7 +122,7 @@ h3 span {
 #customDrink {
   display: flex;
   flex-direction: row;
-  grid-area: 3 / 1 / 5 / 4;
+  grid-area: 2 / 1 / 4 / 4;
   border: solid #008151;
 }
 
@@ -151,7 +155,7 @@ h3 span {
   background-color: white;
   padding: 6rem;
   border-radius: 5px;
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  box-shadow: 100px 100px 100px rgba(0, 0, 0, 0.397);
   z-index: 10;
   padding: 20px 20px;
   /* line-height: 30px; */
@@ -191,11 +195,12 @@ h3 span {
   color: rgba(26, 99, 48, 0.719);
 }
 
-#menuContainer img:hover {
-  box-shadow: 5px 10px 17px -7px rgba(0, 0, 0, 0.75);
+#menuContainer img {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.623);
 }
 .modalImage img:hover {
   box-shadow: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.623);
 }
 
 button {
@@ -217,8 +222,8 @@ button {
 }
 
 input {
-  box-sizing:border-box;
-  
+  box-sizing: border-box;
+
   border-radius: 10px;
   width: 80%;
   padding: 10px 10px;
