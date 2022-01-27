@@ -147,11 +147,10 @@ function addToCart(e) {
 
   deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
   deleteButton.addEventListener("click", (e) => {
-    let singlePrice = document.querySelector(".singlePrice")
+    let singlePrice = e.target.parentNode.parentNode.childNodes[1]
+    let singlePriceFloat = parseFloat(singlePrice.textContent).toFixed(2)
 
-    let singlePriceFloat = parseFloat(singlePrice.textContent)
-    totalPriceNum -= singlePriceFloat
-    totalPrice.textContent = totalPriceNum
+    totalPrice.textContent = totalPriceNum - singlePriceFloat
 
     cartItem.remove()
   })
@@ -203,7 +202,7 @@ function calculatePrice(Obj) {}
 
 //add to cart button will:✅
 //add list item to cart container with:✅
-//price that will update on bottom bar as drinks are added
+//price that will update on bottom bar as drinks are added ✅
 //name of drink✅
 //delete button ✅
 
@@ -219,7 +218,7 @@ function calculatePrice(Obj) {}
 //----TOMORROW----//
 //POST new custom drink✅
 //Delete custom drink✅
-//calculate price
+//calculate price✅
 //fix modalCard for new custom drink✅
 
 //STRETCH
