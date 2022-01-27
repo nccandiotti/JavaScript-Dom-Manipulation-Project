@@ -82,8 +82,6 @@ function createModalCard(drinkObj) {
 //--------------------------------------------
 
 function createModalForm(modalCard) {
-
-
   if (modalCard.id !== "customModalCard") {
     const modalForm = document.createElement("form")
     modalForm.innerHTML = `
@@ -126,26 +124,22 @@ function addToCart(e) {
       price: e.target.parentNode.childNodes[2].textContent,
     }
 
-
-    cartItem.textContent = `1x ${coffeeChoiceObj.size} ${
+    cartItem.innerHTML = `1x ${coffeeChoiceObj.size} ${
       coffeeChoiceObj.flavor
-    } 
-    ${e.target.parentNode.querySelector("p").textContent} $${
-        coffeeChoiceObj.price
-    }`
-    totalPriceNum+=parseFloat(coffeeChoiceObj.price)
-    totalPrice.textContent=totalPriceNum
-
+    } ${
+      e.target.parentNode.querySelector("p").textContent
+    } $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
+    totalPriceNum += parseFloat(coffeeChoiceObj.price)
+    totalPrice.textContent = totalPriceNum
   } else if (e["type"] === "click") {
     const customName = e.target.parentNode.childNodes[1].textContent
 
     itemPrice.textContent = e.target.parentNode.childNodes[2].textContent
-    cartItem.textContent = `1x  ${customName} $${itemPrice.textContent}`
-    
-    totalPriceNum+=parseFloat(itemPrice.textContent)
-    totalPrice.textContent=totalPriceNum
-  }
+    cartItem.innerHTML = `1x  ${customName} $ <span class = "singlePrice">${itemPrice.textContent} </span>`
 
+    totalPriceNum += parseFloat(itemPrice.textContent)
+    totalPrice.textContent = totalPriceNum
+  }
 
   const deleteButton = document.createElement("button")
 
@@ -153,6 +147,12 @@ function addToCart(e) {
 
   deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
   deleteButton.addEventListener("click", (e) => {
+    let singlePrice = document.querySelector(".singlePrice")
+
+    let singlePriceFloat = parseFloat(singlePrice.textContent)
+    totalPriceNum -= singlePriceFloat
+    totalPrice.textContent = totalPriceNum
+
     cartItem.remove()
   })
 

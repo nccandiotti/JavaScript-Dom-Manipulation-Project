@@ -47,14 +47,6 @@
       "flavor": "vanilla",
       "image": "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
       "id": 6
-    },
-    {
-      "drink": "SprinkleDrink",
-      "price": "6.00",
-      "size": "small",
-      "flavor": "Sugar",
-      "image": "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
-      "id": 7
     }
   ]
 }
