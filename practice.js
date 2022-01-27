@@ -141,25 +141,19 @@ function addToCart(e) {
 
   e.target.parentNode.style.display = "none"
 
-  deleteButton.innerHTML =`<svg class="cartDeleteButton" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="10" height="10">
+  deleteButton.textContent = "x"
+  // `<svg class="cartDeleteButton" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="10" height="10">
 
-  <g transform="matrix(0.4166667 0 0 0.4166667 0 0)">
-      <path d="M12 11.293L22.293 1L23 1.707L12.707 12L23 22.293L22.293 23L11.999999 12.707L1.7069988 23L0.9999988 22.293L11.292999 11.999999L0.99999905 1.7069988L1.7069991 0.9999988L11.999999 11.292999L12 11.293z" stroke="none" fill="#000000" fill-rule="nonzero" />
-  </g>
-  </svg>`
+  // <g transform="matrix(0.4166667 0 0 0.4166667 0 0)">
+  //     <path d="M12 11.293L22.293 1L23 1.707L12.707 12L23 22.293L22.293 23L11.999999 12.707L1.7069988 23L0.9999988 22.293L11.292999 11.999999L0.99999905 1.7069988L1.7069991 0.9999988L11.999999 11.292999L12 11.293z" stroke="none" fill="#000000" fill-rule="nonzero" />
+  // </g>
+  // </svg>`
   deleteButton.addEventListener("click", (e) => {
-    let singlePrice = e.target.parentNode.parentNode.childNodes[2].textContent
-    console.log("SINGLEPRICE  " + e.target.parentNode.parentNode.childNodes[2].textContent)
+    let singlePrice = e.target.parentNode.childNodes[2].textContent
     let singlePriceNum = parseFloat(singlePrice)
-    // let priceBeforeDeletion=document.querySelector('.totalPrice')
     let priceBeforeDeletionNum=parseFloat(totalPrice.textContent)
     let updatedTotal=priceBeforeDeletionNum-singlePriceNum
     totalPrice.textContent=updatedTotal
-    console.log("SINGLEPRICENUM  " + singlePriceNum)
-    console.log("PRICEBEFOREDELETIONNUM  " + priceBeforeDeletionNum)
-    console.log("TOTALPRICE " + totalPrice)
-    console.log("UPDATEDTOTAL " + updatedTotal)
-    // console.log(priceBeforeDeletionNum)
     cartItem.remove()
   })
   
