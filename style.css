@@ -47,20 +47,9 @@ h3 {
   display: flex;
   flex-direction: row;
 }
+
 h3 span {
   padding: 20px;
-}
-
-.coffeeIcon {
-  margin-left: 10px;
-  fill: #008151;
-}
-
-.add {
-  background-color: #008151;
-  fill: white;
-  padding: 10px;
-  border-radius: 20px;
 }
 
 .subtitle {
@@ -73,6 +62,18 @@ h3 span {
   height: 250px;
   align-items: right;
   background: linear-gradient(110deg, #bff2e7 60%, #1a5447 60%);
+}
+
+.coffeeIcon {
+  margin-left: 10px;
+  fill: #008151;
+}
+
+.add {
+  background-color: #008151;
+  fill: white;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .drinkCard img {
@@ -120,6 +121,8 @@ h3 span {
 }
 
 #customDrink {
+  display: flex;
+  flex-direction: row;
   grid-area: 3 / 1 / 5 / 4;
   border: solid #008151;
 }
@@ -172,6 +175,7 @@ h3 span {
 #cartIcon:hover {
   stroke: #35e6bf;
 }
+
 .modalCard img {
   border-radius: 20px;
   height: 200px;
@@ -206,12 +210,6 @@ button {
   border: none;
   stroke: #008151;
 }
-button:hover {
-  stroke: #35e6bf;
-}
-.cartDeleteButton {
-  background-color: rgba (255, 255, 255, 0);
-}
 
 #submit {
   background-color: #064c3c;
@@ -219,12 +217,16 @@ button:hover {
   color: white;
   /* display: none; */
 }
+
 #submit:hover {
   background-color: #008151;
 }
 
 input {
+  box-sizing:border-box;
+  
   border-radius: 10px;
+  width: 80%;
   padding: 10px 10px;
   margin: 5px 5px;
   /* box-sizing: border-box; */

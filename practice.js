@@ -6,6 +6,7 @@ const cart = document.querySelector("#cart")
 const customDrink = document.querySelector("#customDrink")
 const allCoffeesUrl = "http://localhost:3000/coffee"
 const customDrinkForm = document.querySelector("#customDrinkForm")
+const body=document.querySelector('body')
 
 // --------------- fetch request -----------
 
@@ -72,7 +73,7 @@ function createModalCard(drinkObj) {
   modalCard.append(exitButton)
   modalCard.append(coffeeName)
   modalCard.append(coffeePrice)
-  menuContainer.append(modalCard)
+  body.append(modalCard)
 
   createModalForm(modalCard)
   modalCard.append(coffeeImage)
@@ -102,16 +103,11 @@ function createModalForm(modalCard) {
 
     modalForm.addEventListener("submit", addToCart)
     modalCard.append(modalForm)
-    // } else {
-    //   const addToCartButton = document.createElement("button")
-    //   addToCartButton.textContent = `text`
-    //   modalCard.append(addToCartButton)
-    //   addToCartButton.addEventListener("click", addToCart)
   }
 }
 
 function addToCart(e) {
-  const cartItem = document.createElement("span")
+  const cartItem = document.createElement("p")
   let itemPrice = document.createElement("span")
   itemPrice.className = "itemPrice"
   let totalPrice = document.querySelector(".totalPrice")
@@ -128,7 +124,7 @@ function addToCart(e) {
       price: e.target.parentNode.childNodes[2].textContent,
     }
 
-    cartItem.innerHTML = `1x ${coffeeChoiceObj.size} ${
+    cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} ${
       coffeeChoiceObj.flavor
     } ${
       e.target.parentNode.querySelector("p").textContent
@@ -149,7 +145,12 @@ function addToCart(e) {
 
   e.target.parentNode.style.display = "none"
 
-  deleteButton.innerHTML = `<svg class = "cartDeleteButton" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>`
+  deleteButton.innerHTML =`<svg class="cartDeleteButton" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="body_1" width="10" height="10">
+
+  <g transform="matrix(0.4166667 0 0 0.4166667 0 0)">
+      <path d="M12 11.293L22.293 1L23 1.707L12.707 12L23 22.293L22.293 23L11.999999 12.707L1.7069988 23L0.9999988 22.293L11.292999 11.999999L0.99999905 1.7069988L1.7069991 0.9999988L11.999999 11.292999L12 11.293z" stroke="none" fill="#000000" fill-rule="nonzero" />
+  </g>
+  </svg>`
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.parentNode.childNodes[1]
     console.log(singlePrice)
@@ -175,8 +176,7 @@ function addToMenu(e) {
     price: "6.00",
     size: e.target.size.value,
     flavor: e.target.flavor.value,
-    image:
-      "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
+    image: "images/fallon-michael-eVHnCElp0bk-unsplash.jpg",
   }
   // --------POST REQUEST TO ADD NEW DRINKS TO MENU--------
   fetch(allCoffeesUrl, {
@@ -229,9 +229,9 @@ function addToMenu(e) {
 //one modal at a time
 //one line at a time in cart
 //keystrokes? for modal
-//fix x in modal box
+//fix x in modal box✅
 //style modal:blur, dropshadow
-//fix modal card submit issue
+//fix modal card submit issue✅
 
 //STRETCH
 //add comment section (reviews for shop)
