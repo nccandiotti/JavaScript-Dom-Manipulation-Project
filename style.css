@@ -115,11 +115,6 @@ h3 span {
   margin-bottom: 20px;
 }
 
-.cartitems::after: {
-  content: "\a";
-  white-space: pre;
-}
-
 #customDrink {
   display: flex;
   flex-direction: row;
@@ -135,7 +130,6 @@ h3 span {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  /* max-width: 90%; */
   margin: 0px auto;
 }
 

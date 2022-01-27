@@ -111,7 +111,6 @@ function addToCart(e) {
   let itemPrice = document.createElement("span")
   itemPrice.className = "itemPrice"
   let totalPrice = document.querySelector(".totalPrice")
-  let itemPriceNum = itemPrice.textContent
   let totalPriceNum = parseFloat(totalPrice.textContent)
 
   if (e["type"] === "submit") {
@@ -123,14 +122,11 @@ function addToCart(e) {
       flavor: flavor.value,
       price: e.target.parentNode.childNodes[2].textContent,
     }
-
     cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} ${
       coffeeChoiceObj.flavor
-    } ${
-      e.target.parentNode.querySelector("p").textContent
-    } $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
+    } ${e.target.parentNode.querySelector("p").textContent} $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
     totalPriceNum += parseFloat(coffeeChoiceObj.price)
-    totalPrice.textContent = totalPriceNum
+    totalPrice.textContent = totalPriceNum.toFixed(2)
   } else if (e["type"] === "click") {
     const customName = e.target.parentNode.childNodes[1].textContent
 
@@ -152,15 +148,21 @@ function addToCart(e) {
   </g>
   </svg>`
   deleteButton.addEventListener("click", (e) => {
-    let singlePrice = e.target.parentNode.parentNode.childNodes[1]
-    console.log(singlePrice)
-    let singlePriceFloat = parseFloat(singlePrice.textContent)
-
-    totalPrice.textContent = totalPriceNum - singlePriceFloat
-    console.log(totalPrice)
+    let singlePrice = e.target.parentNode.parentNode.childNodes[2].textContent
+    console.log("SINGLEPRICE  " + e.target.parentNode.parentNode.childNodes[2].textContent)
+    let singlePriceNum = parseFloat(singlePrice)
+    // let priceBeforeDeletion=document.querySelector('.totalPrice')
+    let priceBeforeDeletionNum=parseFloat(totalPrice.textContent)
+    let updatedTotal=priceBeforeDeletionNum-singlePriceNum
+    totalPrice.textContent=updatedTotal
+    console.log("SINGLEPRICENUM  " + singlePriceNum)
+    console.log("PRICEBEFOREDELETIONNUM  " + priceBeforeDeletionNum)
+    console.log("TOTALPRICE " + totalPrice)
+    console.log("UPDATEDTOTAL " + updatedTotal)
+    // console.log(priceBeforeDeletionNum)
     cartItem.remove()
   })
-
+  
   cartItem.append(deleteButton)
   document.querySelector(".cartItems").append(cartItem)
 }
