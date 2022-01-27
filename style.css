@@ -28,6 +28,8 @@ h1 {
   text-align: center;
   padding-left: 40px;
 }
+h3 {
+}
 
 .subtitle {
   font-size: 12px;
@@ -85,7 +87,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.cartItems::after: {
+.cartitems::after: {
   content: "\a";
   white-space: pre;
 }
@@ -109,6 +111,7 @@ h1 {
 
 .modalCard {
   display: none;
+  box-shadow: 0px 0px 0px;
 
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(1, 1fr);
@@ -141,30 +144,40 @@ h1 {
 
 .closeModal {
   position: absolute;
-  top: 1.2rem;
-  right: 4rem;
-  font-size: 3rem;
+  top: 0;
+  right: 20px;
+  font-size: 2rem;
   color: #333;
   cursor: pointer;
   border: none;
   background: none;
   border-radius: 40%;
 }
+.closeModal:hover {
+  color: rgba(26, 99, 48, 0.719);
+}
 
 button {
-  text-align: center;
-  width: 18px;
-  height: 18px;
+  margin: 5px;
+  background: transparent;
+  border: none;
 }
-button .closeModal {
-  text-align: center;
+button:hover {
+  stroke: rgba(26, 99, 48, 0.719);
+}
+.cartDeleteButton {
+  background-color: rgba (255, 255, 255, 0);
+}
 
-  width: 18px;
-  height: 18px;
+#submit {
+  background-color: white;
+  border: none;
+  /* display: none; */
 }
+
 input {
-  border-radius: 20px;
-  padding: 12px 20px;
+  border-radius: 10px;
+  padding: 10px 10px;
   margin: 5px 5px;
   box-sizing: border-box;
 }

@@ -29,7 +29,7 @@ function displayDrinks(drinkObj) {
         `
   if (!drinkObj.id || drinkObj.id > 5) {
     const customDrinkDeleteBtn = document.createElement("button")
-    customDrinkDeleteBtn.textContent = "TRASHCAN"
+    customDrinkDeleteBtn.innerHTML = `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M9 3h6v-1.75c0-.066-.026-.13-.073-.177-.047-.047-.111-.073-.177-.073h-5.5c-.066 0-.13.026-.177.073-.047.047-.073.111-.073.177v1.75zm11 1h-16v18c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-18zm-10 3.5c0-.276-.224-.5-.5-.5s-.5.224-.5.5v12c0 .276.224.5.5.5s.5-.224.5-.5v-12zm5 0c0-.276-.224-.5-.5-.5s-.5.224-.5.5v12c0 .276.224.5.5.5s.5-.224.5-.5v-12zm8-4.5v1h-2v18c0 1.105-.895 2-2 2h-14c-1.105 0-2-.895-2-2v-18h-2v-1h7v-2c0-.552.448-1 1-1h6c.552 0 1 .448 1 1v2h7z"/></svg>`
     drinkCard.append(customDrinkDeleteBtn)
     customDrinkDeleteBtn.addEventListener("click", () => {
       fetch(`http://localhost:3000/coffee/${drinkObj.id}`, {
@@ -62,22 +62,17 @@ function createModalCard(drinkObj) {
   coffeeImage.src = drinkObj.image
 
   exitButton.className = "closeModal"
-  exitButton.textContent = "x"
+  exitButton.innerHTML = `<svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>`
   exitButton.addEventListener("click", () => {
     modalCard.style.display = "none"
     modalCard.remove()
   })
 
-  if (!drinkObj.id || drinkObj.id > 5) {
-    modalCard.id = "customModalCard"
-  }
-
   modalCard.append(exitButton)
   modalCard.append(coffeeName)
   modalCard.append(coffeePrice)
-  if(document.querySelector('#menuContainer').lastChild.className==="drinkCard"){
   menuContainer.append(modalCard)
-  }
+
   createModalForm(modalCard)
   modalCard.append(coffeeImage)
 }
@@ -97,15 +92,20 @@ function createModalForm(modalCard) {
 
             <label>Flavors</label>
             <input name="flavor" placeholder = "What's your flavor" ></input> <br>
-            <input id = "submit" type="submit" value="Add to cart" />
+          <label>
+            <input id = "submit" type="submit" value = "">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M13.5 21c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m-6 2c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m16.5-16h-2.964l-3.642 15h-13.321l-4.073-13.003h19.522l.728-2.997h3.75v1zm-22.581 2.997l3.393 11.003h11.794l2.674-11.003h-17.861z"/></svg>
+            </input>
+            </label>
             `
+
     modalForm.addEventListener("submit", addToCart)
     modalCard.append(modalForm)
-  } else {
-    const addToCartButton = document.createElement("button")
-    addToCartButton.textContent = "Add to Cart"
-    modalCard.append(addToCartButton)
-    addToCartButton.addEventListener("click", addToCart)
+    // } else {
+    //   const addToCartButton = document.createElement("button")
+    //   addToCartButton.textContent = `text`
+    //   modalCard.append(addToCartButton)
+    //   addToCartButton.addEventListener("click", addToCart)
   }
 }
 
@@ -148,7 +148,7 @@ function addToCart(e) {
 
   e.target.parentNode.style.display = "none"
 
-  deleteButton.innerHTML = `<ion-icon name="close-outline"></ion-icon>`
+  deleteButton.innerHTML = `<svg class = "cartDeleteButton" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>`
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.parentNode.childNodes[1]
     console.log(singlePrice)
@@ -218,7 +218,6 @@ function addToMenu(e) {
 //size dropdown✅
 //name input-will replace drink name when posted to db.json✅
 
-
 //POST new custom drink✅
 //Delete custom drink✅
 //calculate price✅
@@ -246,3 +245,8 @@ function addToMenu(e) {
 //line break in cart
 //function breakup
 //"your total is" after cartItem
+
+// GREG QUESTIONS ------
+// line breaks
+// decreasing value in cart
+// one modal at a time
