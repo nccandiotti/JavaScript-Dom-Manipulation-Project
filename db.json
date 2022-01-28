@@ -73,12 +73,12 @@
       "image": "images/pexels-photo-5946972.jpg"
     },
     {
-      "drink": "caramel latte",
+      "drink": "",
       "price": "6.00",
       "size": "small",
       "flavor": "",
       "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
-      "id": 10
+      "id": 13
     }
   ]
 }

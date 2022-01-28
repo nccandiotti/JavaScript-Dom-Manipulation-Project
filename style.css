@@ -57,7 +57,7 @@ button {
 input {
   box-sizing: border-box;
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   padding: 10px 10px;
   margin: 5px 0;
   border-color: #008151;
@@ -76,6 +76,9 @@ h1 {
   /* text-align: center; */
   padding-left: 40px;
   padding-top: 40px;
+}
+h2 {
+  margin-bottom: 10px;
 }
 .subtitle {
   font-size: 12px;
@@ -119,6 +122,12 @@ h3 span {
 #cart {
   grid-area: 1 / 1 / 2 / 4;
   border: solid #008151;
+  position: relative;
+}
+.totalPriceP {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
 }
 
 #customDrink {
@@ -239,7 +248,6 @@ select:focus {
 
 .modalCard {
   display: none;
-  box-shadow: 0px 0px 0px;
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -247,15 +255,13 @@ select:focus {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 
-  position: relative;
   line-height: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 6rem;
-  border-radius: 5px;
+
   z-index: 10;
   padding: 20px 20px;
   border-radius: 20px;
@@ -302,7 +308,7 @@ select:focus {
 
 .closeModal {
   position: absolute;
-  top: 0;
+  top: 10px;
   right: 20px;
   font-size: 2rem;
   color: #333;

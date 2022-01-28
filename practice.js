@@ -26,7 +26,7 @@ function displayDrinks(drinkObj) {
   drinkCard.className = "drinkCard"
   drinkCard.innerHTML = `
         <h2>${drinkObj.drink}</h2>
-        <img src =${drinkObj.image}> 
+        <img src =${drinkObj.image}> <br> <br>
         `
 
   if (!drinkObj.id || drinkObj.id > 9) {
@@ -119,13 +119,11 @@ function addToCart(e) {
   let itemPrice = document.createElement("span")
   let totalPrice = document.querySelector(".totalPrice")
   let totalPriceNum = parseFloat(totalPrice.textContent)
-  console.log(totalPrice)
   itemPrice.className = "itemPrice"
 
   if (e["type"] === "submit") {
     e.preventDefault()
 
-    // const { size, flavor } = e.target
     let coffeeChoiceObj = {
       size: e.target.modalSize.value,
       flavor: e.target.flavor.value,
@@ -196,58 +194,5 @@ function addToMenu(e) {
   }).then((response) => response.json())
 
   displayDrinks(newDrinkObj)
+  customDrinkForm.reset()
 }
-
-//-----------price calculator-------------
-
-//Fetch Coffees✅
-//render Images into menu container with names✅
-//add click event to coffee cards that:✅
-//render image, name, ✅
-//exit button ✅
-
-//render form to drink display ✅
-//a form with editable size, flavor ✅
-//also default values for coffee selected, size, flavor ✅
-//price✅
-//an add to cart button✅
-
-//add to cart button will:✅
-//add list item to cart container with:✅
-//price that will update on bottom bar as drinks are added ✅
-//name of drink✅
-//delete button ✅
-
-//--------//
-
-//create a drink form with:✅
-//default values for all inputs✅
-//base drink✅
-//flavor input✅
-//size dropdown✅
-//name input-will replace drink name when posted to db.json✅
-
-//POST new custom drink✅
-//Delete custom drink✅
-//calculate price✅
-//fix modalCard for new custom drink✅
-
-//----TOMORROW----//
-//fixing calculator✅
-//one modal at a time
-//one line at a time in cart✅
-//keystrokes? for modal
-//fix x in modal box✅
-//style modal:blur, dropshadow
-//fix modal card submit issue✅
-
-//CLEANUP
-//function breakup
-//"your total is" after cartItem✅
-
-// GREG QUESTIONS ------
-// one modal at a time
-
-//nav bar filter links?
-//if input selected is cold, only show drinks with class of cold
-//if input selected is hot, only show drinks with class of hot
