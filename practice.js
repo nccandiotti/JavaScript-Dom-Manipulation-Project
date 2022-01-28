@@ -63,8 +63,7 @@ function createModalCard(drinkObj) {
   coffeePrice.textContent = drinkObj.price
   coffeeImage.style.maxHeight = "200px"
   coffeeImage.src = drinkObj.image
-  coffeeImage.className = "modalImage"
-
+  
   exitButton.className = "closeModal"
   exitButton.innerHTML = `<svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>`
   exitButton.addEventListener("click", () => {
@@ -79,24 +78,30 @@ function createModalCard(drinkObj) {
   body.append(modalCard)
 
   document.getElementById("overlay").style.display = "block"
-  createModalForm(modalCard)
-  modalCard.append(coffeeImage)
 
+  if (drinkObj.id<10){
+    createModalForm(modalCard)
+  } 
   document.addEventListener("keydown", function (e) {
-    // console.log(e.key);
-
     if (e.key === "Escape" && modalCard.style.display === "grid") {
       modalCard.style.display = "none"
       document.getElementById("overlay").style.display = "none"
     }
   })
+
+  modalCard.append(coffeeImage)
 }
 
 //--------------------------------------------
 
 function createModalForm(modalCard) {
-  if (modalCard.id !== "customModalCard") {
-    const modalForm = document.createElement("form")
+  const modalForm = document.createElement("form")
+  console.log(modalCard.lastChild)
+  console.log(modalCard['form'])
+  console.log(modalCard)
+  if (modalCard.image==="https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg"){
+    modalForm.innerHTML=`<p>Size: ${drinkObj.size} <br> Flavor: ${drinkObj.flavor}</p><br>`
+  } else {
     modalForm.innerHTML = `
             <label>Size</label>
             <div class="search_categories">
@@ -119,8 +124,8 @@ function createModalForm(modalCard) {
             `
 
     modalForm.addEventListener("submit", addToCart)
-    modalCard.append(modalForm)
   }
+    modalCard.append(modalForm)
 }
 
 function addToCart(e) {
@@ -191,9 +196,9 @@ function addToMenu(e) {
     price: "6.00",
     size: e.target.size.value,
     flavor: e.target.flavor.value,
-    image:
-      "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
+    image: "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg"
   }
+  console.log(newDrinkObj.drink)
   fetch(allCoffeesUrl, {
     method: "POST",
     body: JSON.stringify(newDrinkObj),

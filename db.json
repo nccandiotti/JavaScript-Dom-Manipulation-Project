@@ -71,6 +71,14 @@
       "size": "medium",
       "flavor": "none",
       "image": "images/pexels-photo-5946972.jpg"
+    },
+    {
+      "drink": "SprinkleDrink",
+      "price": "6.00",
+      "size": "Small",
+      "flavor": "Sugar",
+      "image": "https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg",
+      "id": 10
     }
   ]
 }
