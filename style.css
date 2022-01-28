@@ -1,4 +1,4 @@
-/* color pallatte
+/* color palette
 #65d9ad
 #3bca94
 #19bf80
@@ -10,10 +10,9 @@
 #00221A
 #35E6BF
 #1A5447
-
-
 */
 
+/* heading area */
 *,
 html {
   margin: 0;
@@ -31,32 +30,38 @@ body {
 }
 
 #overlay {
-  position: fixed; 
-  display: none; 
-  width: 100%; 
+  position: fixed;
+  display: none;
+  width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 img {
   border-radius: 20px;
 }
-/* body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  z-index: 5;
-} */
+
+button {
+  margin: 5px;
+  background: transparent;
+  border: none;
+  stroke: #008151;
+}
+
+input {
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 80%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-color: #008151;
+}
 
 header {
   position: sticky;
@@ -72,15 +77,6 @@ h1 {
   padding-left: 40px;
   padding-top: 40px;
 }
-h3 {
-  display: flex;
-  flex-direction: row;
-}
-
-h3 span {
-  padding: 20px;
-}
-
 .subtitle {
   font-size: 12px;
   padding-left: 50px;
@@ -92,6 +88,53 @@ h3 span {
   align-items: right;
   background: linear-gradient(110deg, #bff2e7 60%, #1a5447 60%);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.623);
+}
+
+#bigDiv {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-left: 20px;
+}
+
+/* Medium Div -- Cart and Custom Drink Form */
+#mediumDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+h3 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+h3 span {
+  padding: 20px;
+}
+
+#cart {
+  grid-area: 1 / 1 / 2 / 4;
+  border: solid #008151;
+}
+
+#customDrink {
+  box-sizing: border-box;
+  flex-direction: row;
+  grid-area: 2 / 1 / 4 / 4;
+  max-height: 500px;
+  border: solid #008151;
+}
+#cart,
+#customDrink {
+  margin: 20px 20px;
+  padding: 20px 20px;
+  /* line-height: 20px; */
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.397);
 }
 
 .coffeeIcon {
@@ -106,6 +149,27 @@ h3 span {
   border-radius: 20px;
 }
 
+/* Menu Container ---------- */
+#smallDiv {
+  grid-area: 1 / 4 / 5 / 10;
+}
+
+#menuContainer img {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.623);
+}
+
+#menuContainer img:hover {
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.623);
+}
+
+#menuContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0px auto;
+}
+
 .drinkCard img {
   width: 200px;
   height: 200px;
@@ -115,31 +179,6 @@ h3 span {
 .drinkCard {
   margin: 20px 20px;
   text-align: center;
-}
-
-#bigDiv {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin-left: 20px;
-}
-
-#mediumDiv {
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-#cart,
-#customDrink {
-  margin: 20px 20px;
-  padding: 20px 20px;
-  /* line-height: 20px; */
-  border-radius: 20px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.397);
 }
 
 .deleteButton {
@@ -162,7 +201,7 @@ select:focus {
   outline: none;
 }
 
-.search_categories{
+.search_categories {
   margin-top: 7px;
   font-size: 13px;
   padding: 8px;
@@ -173,13 +212,14 @@ select:focus {
   position: relative;
 }
 
-.search_categories .select{
+.search_categories .select {
   width: 120%;
-  background:url('http://www.fileformat.info/info/unicode/char/25bc/index.htm') no-repeat;
-  background-position:80% center;
+  background: url("http://www.fileformat.info/info/unicode/char/25bc/index.htm")
+    no-repeat;
+  background-position: 80% center;
 }
 
-.search_categories .select select{
+.search_categories .select select {
   background: transparent;
   line-height: 1;
   border: 0;
@@ -195,30 +235,7 @@ select:focus {
   margin-right: 0px;
 }
 
-#cart {
-  grid-area: 1 / 1 / 2 / 4;
-  border: solid #008151;
-}
-
-#customDrink {
-  box-sizing: border-box;
-  flex-direction: row;
-  grid-area: 2 / 1 / 4 / 4;
-  max-height: 500px;
-  border: solid #008151;
-}
-
-#smallDiv {
-  grid-area: 1 / 4 / 5 / 10;
-}
-
-#menuContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0px auto;
-}
+/* Modal Card ------------- */
 
 .modalCard {
   display: none;
@@ -249,7 +266,7 @@ select:focus {
 .name {
   max-height: 30px;
   font-size: 25px;
-  grid-area: 1 / 1 / 2 / 2
+  grid-area: 1 / 1 / 2 / 2;
 }
 .coffeePrice {
   margin-top: 50px;
@@ -275,12 +292,7 @@ select:focus {
   background-color: #008151;
 }
 
-#cartIcon:hover {
-  stroke: #35e6bf;
-}
-
 .modalCard img {
-  
   grid-area: 1 / 2 / 6 / 3;
   margin: 10px;
   margin-top: 50px;
@@ -301,32 +313,5 @@ select:focus {
 }
 
 .closeModal:hover {
-  stroke:#35e6bf ;
+  stroke: #35e6bf;
 }
-
-#menuContainer img {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.623);
-}
-
-.modalImage img:hover {
-  box-shadow: none;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.623);
-}
-
-button {
-  margin: 5px;
-  background: transparent;
-  border: none;
-  stroke: #008151;
-}
-
-input {
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 80%;
-  padding: 10px 10px;
-  margin: 5px 0;
-  border-color: #008151;
-}
-
-
