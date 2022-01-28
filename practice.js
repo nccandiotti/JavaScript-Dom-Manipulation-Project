@@ -29,7 +29,7 @@ function displayDrinks(drinkObj) {
         <img src =${drinkObj.image}> 
         `
 
-  if (!drinkObj.id || drinkObj.id > 5) {
+  if (!drinkObj.id || drinkObj.id > 9) {
     const customDrinkDeleteBtn = document.createElement("button")
     customDrinkDeleteBtn.innerHTML = `<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M9 3h6v-1.75c0-.066-.026-.13-.073-.177-.047-.047-.111-.073-.177-.073h-5.5c-.066 0-.13.026-.177.073-.047.047-.073.111-.073.177v1.75zm11 1h-16v18c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-18zm-10 3.5c0-.276-.224-.5-.5-.5s-.5.224-.5.5v12c0 .276.224.5.5.5s.5-.224.5-.5v-12zm5 0c0-.276-.224-.5-.5-.5s-.5.224-.5.5v12c0 .276.224.5.5.5s.5-.224.5-.5v-12zm8-4.5v1h-2v18c0 1.105-.895 2-2 2h-14c-1.105 0-2-.895-2-2v-18h-2v-1h7v-2c0-.552.448-1 1-1h6c.552 0 1 .448 1 1v2h7z"/></svg>`
     drinkCard.append(customDrinkDeleteBtn)
@@ -60,7 +60,7 @@ function createModalCard(drinkObj) {
   coffeePrice.className = "coffeePrice"
 
   coffeeName.textContent = drinkObj.drink
-  coffeePrice.textContent = drinkObj.price
+  coffeePrice.textContent = "$" + drinkObj.price
   coffeeImage.style.maxHeight = "200px"
   coffeeImage.src = drinkObj.image
   coffeeImage.className = "modalImage"
@@ -68,6 +68,7 @@ function createModalCard(drinkObj) {
   exitButton.className = "closeModal"
   exitButton.innerHTML = `<svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>`
   exitButton.addEventListener("click", () => {
+    document.getElementById("overlay").style.display = "none"
     modalCard.style.display = "none"
     modalCard.remove()
   })
@@ -77,6 +78,7 @@ function createModalCard(drinkObj) {
   modalCard.append(coffeePrice)
   body.append(modalCard)
 
+  document.getElementById("overlay").style.display = "block"
   createModalForm(modalCard)
   modalCard.append(coffeeImage)
 }
@@ -88,33 +90,25 @@ function createModalForm(modalCard) {
     const modalForm = document.createElement("form")
     modalForm.innerHTML = `
             <label>Size</label>
-            <select id="sizeSelector" name="size">
-              <option value="small">Small</option>
-              <option value="medium">Medium     +$0.50</option>
-              <option value="large">Large     +$1.00</option>
-            </select> <br>
+            <div class="search_categories">
+            <div class="select">
+          <select id="search_categories" name="modalSize">
+              <option value="Small">Small</option>
+              <option value="Medium">Medium     +$0.50</option>
+              <option value="Large">Large     +$1.00</option>
+            </select> 
+            </div>
+            </div>
+            <br>
 
-            <label>Flavors</label>
-            <input name="flavor" placeholder = "What's your flavor" ></input> <br>
+            <label class="modalCardFlavor">Flavors</label>
+            <input class="modalCardFlavor" name="flavor" placeholder = "What's your flavor" ></input> <br>
           <label>
-            <input class = "modalFormSubmit" id = "submit" type="submit" value = "">
-            <svg id = "cartIcon" stroke = "#008151" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M13.5 21c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m-6 2c-.276 0-.5-.224-.5-.5s.224-.5.5-.5.5.224.5.5-.224.5-.5.5m0-2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5m16.5-16h-2.964l-3.642 15h-13.321l-4.073-13.003h19.522l.728-2.997h3.75v1zm-22.581 2.997l3.393 11.003h11.794l2.674-11.003h-17.861z"/></svg>
+            <input class = "modalFormSubmit" id = "submit" type="submit" value = "Add to Cart">            
             </input>
             </label>
             `
-
-
             
-            // const  option=document.getElementById('sizeSelector').value     
-            // console.log(option) 
-            // if (option==="medium"){
-            //   console.log('option')
-            // }
-
-
-
-
-
     modalForm.addEventListener("submit", addToCart)
     modalCard.append(modalForm)
   }
@@ -123,19 +117,21 @@ function createModalForm(modalCard) {
 function addToCart(e) {
   const cartItem = document.createElement("p")
   let itemPrice = document.createElement("span")
-  itemPrice.className = "itemPrice"
   let totalPrice = document.querySelector(".totalPrice")
   let totalPriceNum = parseFloat(totalPrice.textContent)
+
+  itemPrice.className = "itemPrice"
 
   if (e["type"] === "submit") {
     e.preventDefault()
 
-    const { size, flavor } = e.target
+    // const { size, flavor } = e.target
     let coffeeChoiceObj = {
-      size: size.value,
-      flavor: flavor.value,
+      size: e.target.modalSize.value,
+      flavor: e.target.flavor.value,
       price: e.target.parentNode.childNodes[2].textContent,
     }
+    console.log(e.target)
     cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} 
     ${coffeeChoiceObj.flavor} ${e.target.parentNode.querySelector("p").textContent}
      $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
@@ -143,6 +139,8 @@ function addToCart(e) {
 
     totalPriceNum += parseFloat(coffeeChoiceObj.price)
     totalPrice.textContent = totalPriceNum.toFixed(2)
+
+    e.target.parentNode.style.display = "none"
   } else if (e["type"] === "click") {
     const customName = e.target.parentNode.childNodes[1].textContent
 
@@ -151,22 +149,26 @@ function addToCart(e) {
 
     totalPriceNum += parseFloat(itemPrice.textContent)
     totalPrice.textContent = totalPriceNum
+
+    e.target.parentNode.style.display = "none"
   }
 
   const deleteButton = document.createElement("button")
 
-  e.target.parentNode.style.display = "none"
-
-  deleteButton.textContent = "x"
+  deleteButton.className="deleteButton"
+  deleteButton.textContent = "X"
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.childNodes[2].textContent
     let singlePriceNum = parseFloat(singlePrice)
     let priceBeforeDeletionNum = parseFloat(totalPrice.textContent)
     let updatedTotal = priceBeforeDeletionNum - singlePriceNum
     totalPrice.textContent = updatedTotal
+
+    e.target.parentNode.style.display = "none"
     cartItem.remove()
   })
 
+  document.getElementById("overlay").style.display = "none"
   cartItem.append(deleteButton)
   document.querySelector(".cartItems").append(cartItem)
 }
@@ -244,3 +246,10 @@ function addToMenu(e) {
 
 // GREG QUESTIONS ------
 // one modal at a time
+
+
+
+
+//nav bar filter links?
+//if input selected is cold, only show drinks with class of cold
+//if input selected is hot, only show drinks with class of hot

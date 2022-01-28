@@ -26,7 +26,7 @@
     },
     {
       "id": 4,
-      "drink": "Black Tea",
+      "drink": "Chamomile Tea",
       "price": "2.75",
       "size": "medium",
       "flavor": "none",
@@ -41,20 +41,44 @@
       "image": "https://wholefully.com/wp-content/uploads/2019/11/homemade-chai-tea-gift-set-mug-735x1103.jpg"
     },
     {
-      "drink": "sprinkle drink",
-      "price": "6.00",
-      "size": "small",
-      "flavor": "SPRINKLESSPRINKLES",
-      "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
-      "id": 7
+      "id": 6,
+      "drink": "Espresso",
+      "price": "2.50",
+      "size": "medium",
+      "flavor": "none",
+      "image": "https://images.unsplash.com/photo-1615326962740-77492d3d7f19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZXNwcmVzc298ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
     },
     {
-      "drink": "sprinkle drink",
+      "id": 7,
+      "drink": "Hot Chocolate",
+      "price": "4.00",
+      "size": "medium",
+      "flavor": "none",
+      "image": "https://images.unsplash.com/photo-1590080876209-c70d0f0bf6a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90JTIwY2hvY29sYXRlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+    },
+    {
+      "id": 8,
+      "drink": "Iced Coffee",
+      "price": "5.00",
+      "size": "medium",
+      "flavor": "none",
+      "image": "https://cdn.pixabay.com/photo/2020/03/31/17/42/ice-coffee-4988704_960_720.jpg"
+    },
+    {
+      "id": 9,
+      "drink": "Iced Matcha",
+      "price": "5.50",
+      "size": "medium",
+      "flavor": "none",
+      "image": "images/pexels-photo-5946972.jpg"
+    },
+    {
+      "drink": "SprinkleDrink",
       "price": "6.00",
-      "size": "small",
-      "flavor": "SPRINKLESSPRINKLES",
+      "size": "medium",
+      "flavor": "Sugar",
       "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
-      "id": 8
+      "id": 10
     },
     {
       "drink": "",
@@ -62,7 +86,7 @@
       "size": "small",
       "flavor": "",
       "image": "https://static.boredpanda.com/blog/wp-content/uploads/2016/04/latte-art-food-dye-mason-salisbury-6.jpg",
-      "id": 9
+      "id": 11
     }
   ]
 }

@@ -30,6 +30,34 @@ body {
   box-sizing: border-box;
 }
 
+#overlay {
+  position: fixed; 
+  display: none; 
+  width: 100%; 
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); 
+  z-index: 2;
+  cursor: pointer; 
+}
+
+img {
+  border-radius: 20px;
+}
+/* body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+} */
+
 header {
   position: sticky;
   max-height: 250px;
@@ -99,6 +127,7 @@ h3 span {
 }
 
 #mediumDiv {
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -108,28 +137,81 @@ h3 span {
 #customDrink {
   margin: 20px 20px;
   padding: 20px 20px;
-  line-height: 30px;
+  /* line-height: 20px; */
   border-radius: 20px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.397);
+}
+
+.deleteButton {
+  align-items: center;
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+  background-color: #064b3b;
+}
+
+.deleteButton:hover {
+  background-color: #008151;
+}
+
+select:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.search_categories{
+  margin-top: 7px;
+  font-size: 13px;
+  padding: 8px;
+  background: #fff;
+  border: solid rgba(6, 75, 59);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.search_categories .select{
+  width: 120%;
+  background:url('http://www.fileformat.info/info/unicode/char/25bc/index.htm') no-repeat;
+  background-position:80% center;
+}
+
+.search_categories .select select{
+  background: transparent;
+  line-height: 1;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  position: relative;
+  z-index: 10;
+  width: 80%;
+  font-size: 1em;
+}
+
+.arrow {
+  margin-right: 0px;
 }
 
 #cart {
   grid-area: 1 / 1 / 2 / 4;
   border: solid #008151;
-  margin-bottom: 20px;
 }
 
 #customDrink {
   box-sizing: border-box;
   flex-direction: row;
   grid-area: 2 / 1 / 4 / 4;
-  max-height: 350px;
+  max-height: 500px;
   border: solid #008151;
 }
 
 #smallDiv {
   grid-area: 1 / 4 / 5 / 10;
 }
+
 #menuContainer {
   display: flex;
   flex-direction: row;
@@ -142,9 +224,11 @@ h3 span {
   display: none;
   box-shadow: 0px 0px 0px;
 
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  grid-column-gap: 2px;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 
   position: relative;
   line-height: 20px;
@@ -152,22 +236,43 @@ h3 span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* width: 50%; */
   background-color: white;
   padding: 6rem;
   border-radius: 5px;
   z-index: 10;
   padding: 20px 20px;
-  /* line-height: 30px; */
   border-radius: 20px;
-  border: solid #008151;
+  border: solid rgba(6, 75, 59);
   margin-bottom: 20px;
 }
-#submit.modalFormSubmit {
-  background-color: transparent;
+
+.name {
+  max-height: 30px;
+  font-size: 25px;
+  grid-area: 1 / 1 / 2 / 2
 }
-#submit.modalFormSubmit:hover {
-  background-color: transparent;
+.coffeePrice {
+  margin-top: 50px;
+  grid-area: 1 / 1 / 2 / 2;
+  padding: 10px 0;
+}
+.modalCardFlavor {
+  grid-area: 1 / 2 / 2 / 3;
+  margin-bottom: 12px;
+}
+.modalFormSubmit {
+  grid-area: 1 / 2 / 2 / 3;
+  /* align-self: start; */
+}
+
+#submit {
+  background-color: #064b3b;
+  border: none;
+  color: white;
+}
+
+#submit:hover {
+  background-color: #008151;
 }
 
 #cartIcon:hover {
@@ -175,7 +280,10 @@ h3 span {
 }
 
 .modalCard img {
-  border-radius: 20px;
+  
+  grid-area: 1 / 2 / 6 / 3;
+  margin: 10px;
+  margin-top: 50px;
   height: 200px;
   width: 200px;
 }
@@ -191,13 +299,15 @@ h3 span {
   background: none;
   border-radius: 40%;
 }
+
 .closeModal:hover {
-  color: rgba(26, 99, 48, 0.719);
+  stroke:#35e6bf ;
 }
 
 #menuContainer img {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.623);
 }
+
 .modalImage img:hover {
   box-shadow: none;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.623);
@@ -210,35 +320,13 @@ button {
   stroke: #008151;
 }
 
-#submit {
-  background-color: #064c3c;
-  border: none;
-  color: white;
-  /* display: none; */
-}
-
-#submit:hover {
-  background-color: #008151;
-}
-
 input {
   box-sizing: border-box;
-
   border-radius: 10px;
   width: 80%;
   padding: 10px 10px;
-  margin: 5px 5px;
-  /* box-sizing: border-box; */
+  margin: 5px 0;
   border-color: #008151;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 5;
-}
+
