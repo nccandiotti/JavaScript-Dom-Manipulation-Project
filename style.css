@@ -125,6 +125,7 @@ h3 span {
   border: solid #008151;
   position: relative;
 }
+
 .totalPriceP {
   position: absolute;
   bottom: 0;
@@ -138,6 +139,7 @@ h3 span {
   max-height: 500px;
   border: solid #008151;
 }
+
 #cart,
 #customDrink {
   margin: 20px 20px;
@@ -304,6 +306,18 @@ select:focus {
 }
 
 #submit:hover {
+  background-color: #008151;
+}
+
+.customAdd {
+  margin: 5px;
+  padding: 5px;
+  background-color: #064b3b;
+  border: none;
+  color: white;
+}
+
+.customAdd:hover {
   background-color: #008151;
 }
 

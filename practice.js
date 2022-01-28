@@ -72,7 +72,6 @@ function createModalCard(drinkObj) {
     modalCard.remove()
   })
 
-  modalCard.append(exitButton)
   modalCard.append(coffeeName)
   modalCard.append(coffeePrice)
   body.append(modalCard)
@@ -81,14 +80,25 @@ function createModalCard(drinkObj) {
 
   if (drinkObj.id<10){
     createModalForm(modalCard)
-  } 
+  } else if (drinkObj.id>=10){
+    let customAddButton=document.createElement('button')
+    customAddButton.className="customAdd"
+    customAddButton.textContent="Add to Cart"
+    customAddButton.addEventListener('click', addToCart)
+    modalCard.append(coffeeName)
+    modalCard.append(coffeePrice)
+    modalCard.append(exitButton)
+    modalCard.append(drinkObj.size)
+    modalCard.append(drinkObj.flavor)
+    modalCard.append(customAddButton)
+  }
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && modalCard.style.display === "grid") {
       modalCard.style.display = "none"
       document.getElementById("overlay").style.display = "none"
     }
   })
-
+  modalCard.append(exitButton)
   modalCard.append(coffeeImage)
 }
 
@@ -96,12 +106,6 @@ function createModalCard(drinkObj) {
 
 function createModalForm(modalCard) {
   const modalForm = document.createElement("form")
-  console.log(modalCard.lastChild)
-  console.log(modalCard['form'])
-  console.log(modalCard)
-  if (modalCard.image==="https://i.insider.com/5bb3d1c701145545560b0e12?width=751&format=jpeg"){
-    modalForm.innerHTML=`<p>Size: ${drinkObj.size} <br> Flavor: ${drinkObj.flavor}</p><br>`
-  } else {
     modalForm.innerHTML = `
             <label>Size</label>
             <div class="search_categories">
@@ -124,9 +128,10 @@ function createModalForm(modalCard) {
             `
 
     modalForm.addEventListener("submit", addToCart)
-  }
     modalCard.append(modalForm)
-}
+  }
+    
+
 
 function addToCart(e) {
   const cartItem = document.createElement("p")
@@ -141,9 +146,8 @@ function addToCart(e) {
     let coffeeChoiceObj = {
       size: e.target.modalSize.value,
       flavor: e.target.flavor.value,
-      price: e.target.parentNode.childNodes[2].textContent,
+      price: e.target.parentNode.childNodes[1].textContent,
     }
-
     cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} 
     ${coffeeChoiceObj.flavor} ${
       e.target.parentNode.querySelector("p").textContent
@@ -155,9 +159,10 @@ function addToCart(e) {
 
     e.target.parentNode.style.display = "none"
   } else if (e["type"] === "click") {
-    const customName = e.target.parentNode.childNodes[1].textContent
+    console.log(e.target.parentNode.childNodes[0].textContent)
+    const customName = e.target.parentNode.childNodes[0].textContent
 
-    itemPrice.textContent = e.target.parentNode.childNodes[2].textContent
+    itemPrice.textContent = e.target.parentNode.childNodes[1].textContent
     cartItem.innerHTML = `1x  ${customName} $ <span class = "singlePrice">${itemPrice.textContent} </span>`
 
     totalPriceNum += parseFloat(itemPrice.textContent)
@@ -176,7 +181,7 @@ function addToCart(e) {
     let priceBeforeDeletionNum = parseFloat(totalPrice.textContent)
     let updatedTotal = priceBeforeDeletionNum - singlePriceNum
     totalPrice.textContent = updatedTotal.toFixed(2)
-
+    console.log(singlePrice)
     e.target.parentNode.style.display = "none"
     cartItem.remove()
   })
