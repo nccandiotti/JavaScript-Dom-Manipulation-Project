@@ -24,7 +24,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
   position: relative;
   box-sizing: border-box;
 }
@@ -321,4 +321,10 @@ select:focus {
 
 .closeModal:hover {
   stroke: #35e6bf;
+}
+
+footer {
+  display: flex;
+  font-size: 10px;
+  justify-content: center;
 }
