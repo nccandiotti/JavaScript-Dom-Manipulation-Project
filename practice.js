@@ -55,6 +55,10 @@ function createModalCard(drinkObj) {
   const coffeePrice = document.createElement("p")
   const coffeeImage = document.createElement("img")
   const exitButton = document.createElement("button")
+  let customAddButton=document.createElement('button')
+    customAddButton.className="customAdd"
+    customAddButton.textContent="Add to Cart"
+    customAddButton.addEventListener('click', addToCart)
 
   coffeeName.className = "name"
   coffeePrice.className = "coffeePrice"
@@ -77,20 +81,16 @@ function createModalCard(drinkObj) {
   body.append(modalCard)
 
   document.getElementById("overlay").style.display = "block"
-
-  if (drinkObj.id<10){
-    createModalForm(modalCard)
-  } else if (drinkObj.id>=10){
-    let customAddButton=document.createElement('button')
-    customAddButton.className="customAdd"
-    customAddButton.textContent="Add to Cart"
-    customAddButton.addEventListener('click', addToCart)
+  if (!drinkObj.id || drinkObj.id>=10){
+    
     modalCard.append(coffeeName)
     modalCard.append(coffeePrice)
     modalCard.append(exitButton)
     modalCard.append(drinkObj.size)
     modalCard.append(drinkObj.flavor)
     modalCard.append(customAddButton)
+  } else if (drinkObj.id<10){
+    createModalForm(modalCard)
   }
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && modalCard.style.display === "grid") {
