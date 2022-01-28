@@ -40,7 +40,7 @@ function displayDrinks(drinkObj) {
       drinkCard.remove()
     })
   }
-  
+
   drinkCard.addEventListener("click", () => createModalCard(drinkObj))
   menuContainer.append(drinkCard)
 }
@@ -60,7 +60,7 @@ function createModalCard(drinkObj) {
   coffeePrice.className = "coffeePrice"
 
   coffeeName.textContent = drinkObj.drink
-  coffeePrice.textContent = "$" + drinkObj.price
+  coffeePrice.textContent = drinkObj.price
   coffeeImage.style.maxHeight = "200px"
   coffeeImage.src = drinkObj.image
   coffeeImage.className = "modalImage"
@@ -108,7 +108,7 @@ function createModalForm(modalCard) {
             </input>
             </label>
             `
-            
+
     modalForm.addEventListener("submit", addToCart)
     modalCard.append(modalForm)
   }
@@ -119,7 +119,7 @@ function addToCart(e) {
   let itemPrice = document.createElement("span")
   let totalPrice = document.querySelector(".totalPrice")
   let totalPriceNum = parseFloat(totalPrice.textContent)
-
+  console.log(totalPrice)
   itemPrice.className = "itemPrice"
 
   if (e["type"] === "submit") {
@@ -131,11 +131,12 @@ function addToCart(e) {
       flavor: e.target.flavor.value,
       price: e.target.parentNode.childNodes[2].textContent,
     }
-    console.log(e.target)
-    cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} 
-    ${coffeeChoiceObj.flavor} ${e.target.parentNode.querySelector("p").textContent}
-     $ <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
 
+    cartItem.innerHTML = `<br>1x ${coffeeChoiceObj.size} 
+    ${coffeeChoiceObj.flavor} ${
+      e.target.parentNode.querySelector("p").textContent
+    }
+     <span class = "singlePrice">${coffeeChoiceObj.price}</span>`
 
     totalPriceNum += parseFloat(coffeeChoiceObj.price)
     totalPrice.textContent = totalPriceNum.toFixed(2)
@@ -155,14 +156,14 @@ function addToCart(e) {
 
   const deleteButton = document.createElement("button")
 
-  deleteButton.className="deleteButton"
+  deleteButton.className = "deleteButton"
   deleteButton.textContent = "X"
   deleteButton.addEventListener("click", (e) => {
     let singlePrice = e.target.parentNode.childNodes[2].textContent
     let singlePriceNum = parseFloat(singlePrice)
     let priceBeforeDeletionNum = parseFloat(totalPrice.textContent)
     let updatedTotal = priceBeforeDeletionNum - singlePriceNum
-    totalPrice.textContent = updatedTotal
+    totalPrice.textContent = updatedTotal.toFixed(2)
 
     e.target.parentNode.style.display = "none"
     cartItem.remove()
@@ -246,9 +247,6 @@ function addToMenu(e) {
 
 // GREG QUESTIONS ------
 // one modal at a time
-
-
-
 
 //nav bar filter links?
 //if input selected is cold, only show drinks with class of cold
