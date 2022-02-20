@@ -1,9 +1,8 @@
 # JavaScript-Dom-Manipulation-Project
-Flatiron School Phase 1 Pair Programming project, emphasis on vanilla JS and DOM manipulation
+Flatiron School Phase 1 Pair Programming project, emphasis on vanilla JS and DOM manipulation skills
 
 Pair Programming Project made January 2022 in collaboration with Elizabeth Catoe.
 
-Project emphasizes vanilla JavaScript and DOM manipulation skills learned in phase 1 module. 
 
 Functionality: 
 - fetch request
