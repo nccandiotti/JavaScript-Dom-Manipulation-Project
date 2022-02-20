@@ -12,6 +12,6 @@ Functionality:
 - JavaScript functions (declarative, expression, arrow, callbacks), eventListeners, conditionals, forms, interpolation, DRY code, modal
 
 Styling: 
-- color palatte, CSS grid & flexbox, pseudoclasses, SVG icons
+- color palette, CSS grid & flexbox, pseudoclasses, SVG icons
 
 Features: functional form, shopping cart that updates prices per user input
